@@ -31,278 +31,63 @@
 							<h1 class="major">Super Store</h1>
 							<span class="image fit"><img src="images/pic07.jpg" alt="" /></span>
 							
-							<p>I used python and associated libraries such as Pandas and Numpy to analyize the sample data file. First I opened and converted the CSV file to a Pandas DataFrame for 
-								ease of manipulation. I did general exploratory data analysis and defined several functions to aid in finding key statistics and 
-								for grouping and slicing the DataFrame into smaller easier to work with chunks. An overview is placed in the tables below. </p>
+							<p>This project focused on a fictious super store's data set that included a lot of data fields over the course of several years. The focus for this project 
+								was to preform a general exploratory data analysis and conduct a forecast of the main categories for the next year. I used Tableau and Python to conduct exploratory data analysis as well preforming a SARIMA forecast for Units sold for each main category
+								for the next year. Using the average profit and sales per unit sold for each category the future profit and sales were extrapolated out. </p>
 						</div>
 					</section>
 					<section id = "main" class = "wrapper">
 						<div class="inner">
 							<h1 class="major">Exploratory Data Analysis</h1>
-							<p>I started the exploratory analysis using tableau to gain a better understanding of the data set. Creating several useful dashboards and worksheets that
-							aided in understanding the trends present
-							</p>
-						</div>
-					</section>
 					<section>
 						<div class = "inner">
-							<p><a href= "https://public.tableau.com/views/Super_Store_Tableau/Dashboard2?:language=en-US&:display_count=n&:origin=viz_share_link" target = '_blank' ><center>Tableau Dashboard</center></a></p>
+								<p><a href= "https://public.tableau.com/views/Super_Store_Tableau/Dashboard2?:language=en-US&:display_count=n&:origin=viz_share_link" target = '_blank' ><center>Tableau Visualization Link</center></a></p>
+		
+						</div>
+					</section>
+							<p>I started the exploratory data analysis using Tabeau. Creating several useful dashboards and worksheets to gain a better understanding of the data set. The Tableau dashboards and worksheets
+								provided valuable insight into the data set, especially as to which business segment, category, and sub category is the most profitable. Tableau's vizualition ability helped me to identify
+								what states and product types that have returned negative profits over the course of the recorded data. 
+							</p>
+					</section>
+					<section id = "main" class="wrapper">
+						<div class = "inner">
+							<p>Georaphical Analysis</p>
 							<span class="image fit"><img src = "images/MAP.jpg" alt ="" /></span>
 
 						</div>
 					</section>
-					<section>
-						<h3>Furniture </h3>
-									<div class="table-wrapper">
-										<table class="alt">
-											<thead>
-												<tr>
-													<th>Year</th>
-													<th>Sales</th>
-													<th>Profit</th>
-													<th>Units Sold</th>
-													<th>Customers</th>
-													<th>Most Popular Region</th>
-													<th>Most Popular State</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>2014</td>
-													<td>$157,192.85</td>
-													<td>$5,457.73</td>
-													<td>1,623</td>
-													<td>290</td>
-													<td>West US</td>
-													<td>California</td>
-												</tr>
-												<tr>
-													<td>2015</td>
-													<td>$170,518.24</td>
-													<td>$3,015.20</td>
-													<td>1,775</td>
-													<td>289</td>
-													<td>West US</td>
-													<td>California</td>
-												</tr>
-												<tr>
-													<td>2016</td>
-													<td> $199,876.93</td>
-													<td> $6,953.75</td>
-													<td>2,217</td>
-													<td>356</td>
-													<td>West US</td>
-													<td>California</td>
-												</tr>
-												<tr>
-													<td>2017</td>
-													<td> $215,387.27</td>
-													<td> $3,018.39</td>
-													<td>2,437</td>
-													<td>403</td>
-													<td>West US</td>
-													<td>California</td>
-												</tr>
-												
-											</tbody>
-											<tfoot>
-												<tr>
-													<td>Total</td>
-													<td> $742,975.29 </td>
-													<td> $18,445.07</td>
-													<td> 8,052 </td>
-													<td>1,338</td>
-													<td>West US</td>
-													<td>California</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-							</section><h3>Tech</h3>
-							<div class="table-wrapper">
-								<table class="alt">
-									<thead>
-										<tr>
-											<th>Year</th>
-											<th>Sales</th>
-											<th>Profit</th>
-											<th>Units Sold</th>
-											<th>Customers</th>
-											<th>Most Popular Region</th>
-											<th>Most Popular State</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>2014</td>
-											<td> $175,278.23 
-											</td>
-											<td> $21,492.83 
-											</td>
-											<td> 1,389 
-											</td>
-											<td> 250 
-											</td>
-											<td> West US 
-											</td>
-											<td> California
-											</td>
-											
-										</tr>
-										<tr>
-											<td>2015</td>
-											<td> $162,780.81 
-											</td>
-											<td> $33,503.87 
-											</td>
-											<td> 1,489
-											</td>
-											<td> 276 
-											</td>
-											<td> East US 
-											</td>
-											<td>California 
-											</td>
-										</tr>
-										<tr>
-											<td>2016</td>
-											<td> $226,364.18 
-											</td>
-											<td> $39,773.99 
-											</td>
-											<td>1,698
-											</td>
-											<td>290
-											</td>
-											<td>West US	</td>
-											<td>California
-											</td>
-										</tr>
-										<tr>
-											<td>2017</td>
-											<td>  $271,730.81</td>
-											<td> $50,684.26 </td>
-											<td> 2,363
-											</td>
-											<td> 387
-											</td>
-											<td> West US
-											</td>
-											<td> California
-											</td>
-										</tr>
-										
-									</tbody>
-									<tfoot>
-										<tr>
-											
-											<td>Total</td>
-											<td> $836,154.03 </td>
-											<td> $145,454.95 </td>
-											<td>6,939</td>
-											<td>1,203</td>
-											<td>West US</td>
-											<td>California</td>
-										</tr>
-									</tfoot>
-								</table>
-							</div>
+					<section id="main" class="wrapper">
+						<div class = "inner">
+							<p>
+								Georaphical analysis showed that there was not always a 1:1 relationship. For example California was the state that had the most units sold and was the most profitable state, 
+								however, Texas was also a top five state for units sold but was the least profitable state for the store. This counterintuitive relationship holds true for other states as well.
+								Some valuable insight gained from this shows that while some states buy a lot of products the products that are sold are either priced to low or are unprofitable to keep in stock and further market research
+								is needed to reasses the presence of the store in these states.
+							</p>
+						</div>
 					</section>
-				</section><h3>Office Supplies</h3>
-				<div class="table-wrapper">
-					<table class="alt">
-						<thead>
-							<tr>
-								<th>Year</th>
-								<th>Sales</th>
-								<th>Profit</th>
-								<th>Units Sold</th>
-								<th>Customers</th>
-								<th>Most Popular Region</th>
-								<th>Most Popular State</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>2014</td>
-								<td>  $151,776.41  
-								</td>
-								<td>  $22,593.42 
-								</td>
-								<td> 4,569
-								</td>
-								<td> 509
-								</td>
-								<td> West US 
-								</td>
-								<td> California
-								</td>
-								
-							</tr>
-							<tr>
-								<td>2015</td>
-								<td>  $137,233.46 
-								</td>
-								<td>  $25,099.53 
-								</td>
-								<td> 4,715
-
-								</td>
-								<td> 502
- 
-								</td>
-								<td> East US 
-								</td>
-								<td>California 
-								</td>
-							</tr>
-							<tr>
-								<td>2016</td>
-								<td>  $184,446.32 
-
-								</td>
-								<td>  $34,886.02 
-								</td>
-								<td>5,978</td>
-								<td>545
-								</td>
-								<td>West US	</td>
-								<td>California
-								</td>
-							</tr>
-							<tr>
-								<td>2017</td>
-								<td> $246,097.18 
-								</td>
-								<td> $39,736.62 
-								</td>
-								<td> 7,676
-								</td>
-								<td> 634
-								</td>
-								<td> West US
-								</td>
-								<td> California
-								</td>
-							</tr>
-							
-						</tbody>
-						<tfoot>
-							<tr>
-								
-								<td>Total</td>
-								<td> $719,553.37 </td>
-								<td>  $122,315.59 </td>
-								<td>22,938</td>
-								<td>2,190</td>
-								<td>West US</td>
-								<td>California</td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-		</section>
-
+					<section id = "main" class="wrapper">
+						<div class="inner">
+							<p>Segment, Category, and Consumer Group Data</p>
+							<span class = "image fit"><img src = "images/Profit_Orders_Segment_Category.jpg" alt ="" /></span>
+							<p>
+								Above is another Tableau dashboard that shows a breakdown of the profit and units sold by customer segment, category and subcategory. The customer segment that is the most profit generating is
+								consumer as well as the biggest buyer of units sold. Technology was the most profitable product category for all three customer segments at around $145,000 in profits. Office Supplies generated around $120,000, and the smallest was Furniture which brought in $18,000. 
+								With this information a recommendation for this store could be to focus on their more profitable categories and scale down their furniture holdings. In addition to scaling down furniture sales, 
+								tables have been returned negative profits over the course of four years, therefore, it warrants a closer look into continuing keeping tables in the store's holdings. 
+							</p>
+							<p>Conclusion</p>
+							<p>
+								Using Tableau to preform exploratory data analysis I found that there is not a 1:1 relationship between states with high order counts and states that generated the highest profits.
+								In addition taking a closer look into the customer type, prodcut categories and subcategories gave insight into which segments should be focused on and which should be scaled back. 
+								Consumers made up the biggest group of orders as well as the most profit generating customer group. Technology is the most profitable business category followed closely by Office Supplies.
+								The most profitable subcategory is Copiers across all three customer groups. Furniture being the smallest profit generating category also has products that have costed the store to sell. These 
+								include Tables for all three customer groups and Bookcases for Consumers. The only other negative profit subcategory is Supplies in the Office Supplies business category, however, 
+								this is only true for Consumers.
+							</p>
+						</div>
+					</section>
 					<section id="main" class="wrapper">
 						<div class="inner">
 							<h1 class="major">Forecasting</h1>
