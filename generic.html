@@ -92,8 +92,13 @@
 						<div class="inner">
 							<h1 class="major">Forecasting</h1>
 							<span class="image fit"><img src="images\Units_Sold_Forecast.jpg" alt="" /></span>
-							<p>Talk about the SARIMA model and how it works etc etc and the findings below</p>
-							<p>talk about the forecasted results, etc, what the actual forecaste means what segment is growing faster etc, add table like above for forecasted amounts</p>
+							<p>Above is an output graph of the historical units sold and the forecasted units sold for the next year for each category of the store. I chose to conduct a SARIMA or
+								Seasonal Autoregressive Integrated Moving Average model to forecast the future units sold because there is a strong seasonality component to the store's sales that would not be captured with the standard ARIMA forecast. </p>
+							<p>I used Python to manipulate the data set in order to make the calculations and forecasting easier. I started by creating three seperate Pandas DataFrames to store each
+								of the different categories. I used the library statsmodels.api for the SARIMA model as it has built in functions and formulas that aided in the creating of the timeseries analysis. 
+							 	in understanding the timeseries data firstly I defined a function to check the seasonality of the data and had it output figure #whatever (# the figures later)
+								as shown there is a strong seasonal pattern shown throughout the year with orders peaking in the fourth quarter and dropping off sharply in the first.</p>
+							<p>Figure # whatever<span class = "image fit"><img src = "images/Seasonal_decomp_furniture.jpg" alt="" /></span> </p>
 						</div>
 					</section>
 
