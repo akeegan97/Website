@@ -102,28 +102,62 @@
 							<p>After confirming that the data was seasonal the next step was to determine the stationarity of the data.
 								I defined a function in Python that could test the stationarity of different data sets, using the statsmodels.tsa.stattools library I used the adfuller function inside the defined
 								function. The adfuller test tests stationarity by conducting unit root tests on the data series. The output of all three categories' quantity sold is shown to be stationary 
-								by the Augmented Dickery-Fuller test, at the 90%, 95%, and 99% confidence intervals. The next step is to optimize the SARIMA parameters. I utlilized a grid search to find the optimal configuration for the model.
-								I defined a function that would preform the grid search for each of the categories' quantity sold. The output of the function was given by (p,d,q)x(P,D,Q,m), where (p,d,q) are the three trend elements and (P,D,Q,m) are the seasonal elements.
-								The grid search worked through finding the optimal configuration of the parameters that minimized the AIC. Once the parameters have been optimized I defined a function that would output the actual model used to forecast into the future. The function
-								returned the results which is the SARIMA model as well as useful information in the terminal. This included the Root Mean Squared Error with the model being dynamic compared to a non dynamic model. After the model was made and used to forecast the returned 
-								value is used as a variable to another defined function that outputs the lower bound, median, and upper bound of predicted units sold. Using the average profit per unit sold for each of the categories from 2014 - 2017 the profit per category was extrapolated using the 
-								forecasted units * average profit per unit sold. </p>
-						</div>
-					</section>
-					<section id = "main" class = "wrapper">
-						<div class = "inner">
-							<p>
-								Code Exercpts
-							</p>
-							<p>
-								ADF test <span class = "image fit"><img src = "images/ADF_test.jpg" alt=""/></span>
-							</p>
-							<p>
-								Grid Search <span class = "image fit"><img src = "images/grid_search_code.jpg" alt=""/></span>
-							</p>
+								by the Augmented Dickery-Fuller test, at the 90%, 95%, and 99% confidence intervals.</p>
 
+								<p>Augmented Dickery-Fuller Test Code <span class = "image fit"><img src = "images/ADF_test.jpg" alt="" /></span></p>
+								<p>ADF test results for Furniture<span class = "image fit"><img src = "images\output_ADF_furniture.jpg" alt=""/></span></p>
+								<p>The conclusion of the ADF tests for all three categories confirms that they are stationary and the use of the SARIMA model to forcast is applicable.</p>
+								
+								
+								
+								<p>The next step is to optimize the SARIMA parameters. I utlilized a grid search to find the optimal configuration for the model.
+								I defined a function that would preform the grid search for each of the categories' quantity sold. The output of the function was given by (p,d,q)x(P,D,Q,m), where (p,d,q) are the three trend elements and (P,D,Q,m) are the seasonal elements.
+								The grid search worked through finding the optimal configuration of the parameters that minimized the AIC. </p> 
+
+								<p>Grid Search Code <span class = "image fit"><img src = "images/grid_search_code.jpg" alt=""/></span></p>
+								<p>Output of gride search for the furniture category <span class = "image fit"><img src = "images\output_of gridsearch.jpg" alt=""/></span></p>
+
+								<p>Once the optimized parameters had been found the next step was to input those parameters to the defined function sarima_eva which takes the dataset, optimized parameters, period, the end
+									date of the training data, and the data that the model will compare itself to. I used December 1st of 2016 as the last date for the training set and December 2nd, 2016 to 
+									December 1st, 2017 as the portion of the historical data that the model will compare it's forecasted values to the actual values. 
+								</p>
+								<p>sarima_eva Function and Output <span class = "image fit"><img src= "images\SARIMA_EVA_Function.jpg" alt=""/></span>
+								<span class = "image fit"><img src ="images\output_SARIMA_EVA_to_console.jpg" alt=""/> </span></p>
+								<p>The sarima_eva function works through with the optimized parameters and the data sets and returns the forecasted results for the 2017 year, and uses this to compare to the 
+									actual values seen. The print statement gives useful information as to how the model preforms and compares the Root Square Mean Error of the two different model types.
+								</p>
+								
+								<p>The second part of the sarima_eva function is the portion that displays the plots of useful information. These plots are useful to see the degree of accuracy that the model is producing
+									as well as to see how the model compares to actual data observed before use as a forecasting tool.
+									
+									
+									Figure 1 shows the plot diagnostics with a Q-Q plot that shows the residuals follow a Normal Distribution
+									as well as other plots such as the correlogram which shows that a Moving Average of 1 is suitable for the model. 
+								
+									Figure 2 and 3 show how the model compares to observed data. Figure 2 is the dynamic model placed on the actual values, this type uses the predicted value of T+1
+									to predict the value at T+2 and so on until the last value is predicted. Figure 3 shows the other type of model which is a one-step ahead model, meaning the predicted value at T+1 is not used
+									to predict the next value instead the actual value of T+1 is used to predict the value at T+2. This is also shown above in the output of sarima_eva function that when dynamic is set to false the model
+									preforms better.</p> 
+
+
+								<p>Figure 1. Plot Diagnostics <span class = "image fit"><img src ="images\sarima_eva_output_group_plots.jpg" alt="" /></span></p>
+								<p> Figure 2. Dynamic Forecast <span class = "image fit"><img src = "images\sarima_eva_dynamic_forecast_plot.jpg" alt="" /></span></p>
+								<p> Figure 3. One-Step Forecast <span class = "image fit"><img src = "images\sarima_eva_one_step_forecast_plot.jpg" alt="" /></span></p>
+								<p>The above method is detailing the steps taken for the Furniture category and was done for the other two Technology and Office Supplies as well. </p>
+								<p>After comparing the model to real data and seeing that the model is sufficiently accurate the next step is to produce the actual forecast for the quantity sold for each category. This
+									was done by giving the model all of the histroical data to fit to and then used to forecast one year into the future. Figure 4 shows the forecasting function that was used, figures 5 & 6 are histroical profit
+									+ forecasted profit and histroical quantity sold + forecasted quantity sold respectively.
+								</p>
+								<p>Figure 4. Forecast Function<span class = "image fit"><img src = "images\forecast_func.jpg" alt = ""/></span></p>
+								<p>Figure 5. Profit Plot<span class = "image fit"><img src = "images\Profit_Forecast.jpg" alt = ""/></span></p>
+								<p>Figure 6. Quantity Plot<span class = "image fit"><img src = "images\Units_Sold_Forecast.jpg" alt = ""/></span></p>
+								<p> The values in the forecasted section of Figure 5 are derived from taking the forecasted quantity for each category multiplied by the average profit per unit sold for each category
+									between 2014 and 2017. While, the average profit per quantity sold used to scale the forecasted quantity takes several assumptions such as the proportion of the newly sold units will 
+									be the same as the average of the historical data I chose to include it as a general overview on how each category's profit will look like for the following year.
+								</p>
 						</div>
 					</section>
+				
 
 			</div>
 
