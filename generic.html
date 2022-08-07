@@ -96,9 +96,32 @@
 								Seasonal Autoregressive Integrated Moving Average model to forecast the future units sold because there is a strong seasonality component to the store's sales that would not be captured with the standard ARIMA forecast. </p>
 							<p>I used Python to manipulate the data set in order to make the calculations and forecasting easier. I started by creating three seperate Pandas DataFrames to store each
 								of the different categories. I used the library statsmodels.api for the SARIMA model as it has built in functions and formulas that aided in the creating of the timeseries analysis. 
-							 	in understanding the timeseries data firstly I defined a function to check the seasonality of the data and had it output figure #whatever (# the figures later)
+							 	in understanding the timeseries data firstly I defined a function to check the seasonality of the data and had it output the below figure
 								as shown there is a strong seasonal pattern shown throughout the year with orders peaking in the fourth quarter and dropping off sharply in the first.</p>
-							<p>Figure # whatever<span class = "image fit"><img src = "images/Seasonal_decomp_furniture.jpg" alt="" /></span> </p>
+							<p>Seasonality Decomposition<span class = "image fit"><img src = "images/Seasonal_decomp_furniture.jpg" alt="" /></span> </p>
+							<p>After confirming that the data was seasonal the next step was to determine the stationarity of the data.
+								I defined a function in Python that could test the stationarity of different data sets, using the statsmodels.tsa.stattools library I used the adfuller function inside the defined
+								function. The adfuller test tests stationarity by conducting unit root tests on the data series. The output of all three categories' quantity sold is shown to be stationary 
+								by the Augmented Dickery-Fuller test, at the 90%, 95%, and 99% confidence intervals. The next step is to optimize the SARIMA parameters. I utlilized a grid search to find the optimal configuration for the model.
+								I defined a function that would preform the grid search for each of the categories' quantity sold. The output of the function was given by (p,d,q)x(P,D,Q,m), where (p,d,q) are the three trend elements and (P,D,Q,m) are the seasonal elements.
+								The grid search worked through finding the optimal configuration of the parameters that minimized the AIC. Once the parameters have been optimized I defined a function that would output the actual model used to forecast into the future. The function
+								returned the results which is the SARIMA model as well as useful information in the terminal. This included the Root Mean Squared Error with the model being dynamic compared to a non dynamic model. After the model was made and used to forecast the returned 
+								value is used as a variable to another defined function that outputs the lower bound, median, and upper bound of predicted units sold. Using the average profit per unit sold for each of the categories from 2014 - 2017 the profit per category was extrapolated using the 
+								forecasted units * average profit per unit sold. </p>
+						</div>
+					</section>
+					<section id = "main" class = "wrapper">
+						<div class = "inner">
+							<p>
+								Code Exercpts
+							</p>
+							<p>
+								ADF test <span class = "image fit"><img src = "images/ADF_test.jpg" alt=""/></span>
+							</p>
+							<p>
+								Grid Search <span class = "image fit"><img src = "images/grid_search_code.jpg" alt=""/></span>
+							</p>
+
 						</div>
 					</section>
 
