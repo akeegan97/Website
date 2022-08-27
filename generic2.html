@@ -21,13 +21,14 @@
 				</nav>
 			</header>
 
-		
+		<!-- MAIN -->
 			<div id="wrapper">
-
-				
-					<section id="main" class="wrapper">
-						<div class="inner">
-							<h1 class="major">What is Geometric Brownian Motion?</h1>
+				<section id="main" class="wrapper">
+					<div class="inner">
+						<h1 class="major">What is Geometric Brownian Motion?</h1>
+						<section id = "main" class="wrapper">
+							<div class = "inner">
+						
 							<span class="image fit"><img src="images/Geometric Brownian Motion equation.jpg" alt="" /></span>
 							<p>This project revolved around the use of Geometric Brownian motion to forecast stock prices. Brownian motion is a continuous stochastic differential equation 
 								that has useful properties in modeling random processes. In this application a specific subset of Brownian motion was used: Geometric Brownian motion. 
@@ -39,29 +40,32 @@
 								observed returns. The error term ε is estimated by taking a random selection from a normal distribution with a mean of 0 and a standard deviation of √Δt, 
 								where Δt  is one divided by the step size. The underlying assumption with this approach to estimating μ and σ is that the stock’s distribution of log returns is constant through time, 
 								with only the numerical price changing.  </p>
-							
-							
 						</div>
-					</section>
+							
+							
+			</div>
+				</section>
 					<section id="main" class="wrapper">
 						<div class="inner">
 							<h1 class="major">Forecasting with GBM</h1>
-							<p>In Python I created a function that could take parameters and would return a graph with the simulated Geometric Brownian motion price paths for a stock, a histogram of the 
+							<section id = "main" class="wrapper">
+								<div class = "inner">
+								<p>In Python I created a function that could take parameters and would return a graph with the simulated Geometric Brownian motion price paths for a stock, a histogram of the 
 								final predicted price of the simulated paths, the mean predicted price, the starting price, and the actual price on the forecasted date. Figure 3 shows 
 								the function that I defined. The parameters are scaled to the time frame that the forecast is predicting for. This is done by multiplying μ with the number of steps and σ by the square root of 
 								the number of steps, steps are defined as the number of trading days that the price was specified to be predicted for. Doing this scales the parameters in a manner that is usable in predictions 
 								that are further than one trading day as the μ and σ that are originally estimated are in daily units.</p>
-							<p>I primarily used BAC stock data to test and analyze the model’s accuracy and to see what the number of days that produced the best results, however I also used OMCL (Omnicell) and BTC (Bitcoin) for personal curiosity. 
+								<p>I primarily used BAC stock data to test and analyze the model’s accuracy and to see what the number of days that produced the best results, however I also used OMCL (Omnicell) and BTC (Bitcoin) for personal curiosity. 
 								Figure 1 shows the resulting graph for a time step of 21 and all of the simulated paths as well as the true price path that was observed in black. Figure 2 shows the histogram of predicted values at 
 								t = steps as well as the actual value on that date.  </p>
-							<p>
+								<p>
 								I conducted an analysis on the accuracy of the model I had built with the results being shown in the table below. I started by randomly selecting five starting and ending dates between 2012 and 2021
 								I focused the analysis on 21, 43, 64, 128, and 252 trading days which equates to 1, 2, 3, 6, and 12 months respectively. The findings of the analysis shows that the most accurate prediction length
 								is 64 trading days with only a 3% average error over 5 samples. This is, at first glance, surprising as I would have expected to see an exponential increase in error as the forecasting steps are increased.
 								However, as the steps are increased the short term volatility that stock prices experience are smoothed out and the longer running trend captured by σ becomes dominate. A larger sample size and more financial 
 								securities would be needed to give a definitive answer but it is an informative cursory analysis.  
-							</p>
-								<div class="table-wrapper">
+								</p>
+									<div class="table-wrapper">
 									<table>
 										<thead>
 											<tr>
@@ -102,14 +106,12 @@
 									</table>
 								</div>
 							
-						</div>
-
+							</div>	
+						</section>
+					<section id="main" class="wrapper">
 						
-						
-					</section>
-				<section id="main" class="wrapper">
-						<div class="inner">
 							<h1 class="major">Figures</h1>
+							<div class="inner">
 							<p>
 								Figure 1
 							</p>

@@ -26,7 +26,7 @@
 			<div id="wrapper">
 
 				<!-- Main -->
-					<section id="main" class="wrapper">
+					<!--maybe axing <section id="main" class="wrapper">
 						<div class="inner">
 							<h1 class="major">Super Store Data Analytics Project</h1>
 							<span class="image fit"><img src="images/pic07.jpg" alt="" /></span>
@@ -37,26 +37,22 @@
 							During the second part of the project, I was most interested in projecting order quantities for each of the main categories for the following year. I used Python and associated libraries
 							 to aid in building a forecast. </p>
 						</div>
-					</section>
+					</section> --->
 					<section id = "main" class = "wrapper">
 						<div class="inner">
 							<h1 class="major">Exploratory Data Analysis</h1>
-					<section>
-						<div class = "inner">
-								<p><a href= "https://public.tableau.com/views/Super_Store_Tableau/Dashboard2?:language=en-US&:display_count=n&:origin=viz_share_link" target = '_blank' >Tableau Visualization Link</a></p>
-		
-						</div>
-					</section>
-							<p>
-								I created several useful dashboards and worksheets in Tableau to help shape and visualize the data set. These helped uncover some insightful information such as the geographical dimension
-								 of the store’s presence, which customer type is the most profitable, and other useful information. 
-							</p>
-					</section>
+					
 					<section id = "main" class="wrapper">
 						<div class = "inner">
-							<p>Georaphical Analysis</p>
-							<span class="image fit"><img src = "images/MAP.jpg" alt ="" /></span>
 
+								<p><a href= "https://public.tableau.com/views/Super_Store_Tableau/Dashboard2?:language=en-US&:display_count=n&:origin=viz_share_link" target = '_blank' >Tableau Visualization Link</a></p>
+								<p>
+									I created several useful dashboards and worksheets in Tableau to help shape and visualize the data set. These helped uncover some insightful information such as the geographical dimension
+									 of the store’s presence, which customer type is the most profitable, and other useful information. 
+								</p>
+		
+								<p>Georaphical Analysis</p>
+								<span class="image fit"><img src = "images/MAP.jpg" alt ="" /></span>
 						</div>
 					</section>
 					<section id="main" class="wrapper">
@@ -87,8 +83,10 @@
 						</div>
 					</section>
 					<section id="main" class="wrapper">
-						<div class="inner">
+						
 							<h1 class="major">Forecasting</h1>
+							
+							<div class = "inner">
 							<span class="image fit"><img src="images\Units_Sold_Forecast.jpg" alt="" /></span>
 							<p>The next portion of the project was to conduct a forecast of units sold for each of the three main categories: Technology, Furniture, and Office Supplies. I chose to apply a SARIMA, 
 								or Seasonal Autoregressive Integrated Moving Average model to forecast the units sold because of the strong seasonal component of the data that would not be captured with the standard ARIMA model.  </p>
@@ -142,7 +140,7 @@
 								<p>Figure 5. Forecast Function<span class = "image fit"><img src = "images\forecast_func.jpg" alt = ""/></span></p>
 								<p>Figure 6. Profit Plot<span class = "image fit"><img src = "images\Profit_Forecast.jpg" alt = ""/></span></p>
 								<p>Figure 7. Quantity Plot<span class = "image fit"><img src = "images\Units_Sold_Forecast.jpg" alt = ""/></span></p>
-								<p>The values in figure 7 are derived from taking average profit per unit sold for each category and multiplying the forecasted units sold to extrapolate the forecasted profit. 
+								<p>The values in figure 6 are derived from taking average profit per unit sold for each category and multiplying the forecasted units sold to extrapolate the forecasted profit. 
 									Whilst this method makes several assumptions, including that the proportion of products to be sold will be the same as in the past and that profit margins will remain the same, 
 									the purpose is as a general overview on how each Category profits will look in the forecasted year.  
 								</p>
