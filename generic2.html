@@ -32,11 +32,11 @@
 							<p>This project revolved around the use of Geometric Brownian motion to forecast stock prices. Brownian motion is a continuous stochastic differential equation 
 								that has useful properties in modeling random processes. In this application a specific subset of Brownian motion was used: Geometric Brownian motion. 
 								GBM has applications in finance since by design the output of the function is bounded as [0, +∞), such that there are no negative values given. The equation of 
-								Geometric Brownian motion is given by dS(t)= μS(t)dt+ σS(t)dB(t), solving the SDE yields S(t)=S(0)  exp⁡((μ-1/2 σ^2 )t+σB(t)). This is the equation that I used 
+								Geometric Brownian motion is given by dS(t)= μS(t)dt+ σS(t)dW(t), solving the stochastic differential equation yields S(t)=S(0)  exp⁡((μ-1/2 σ^2 )t+σε. This is the equation that I used 
 								in order to simulate price paths of several different stocks. </p>
-							<p>In the solved form, S(t)=S(0)  exp⁡((μ-1/2 σ^2 )t+σB(t)), μ is the drift and σ is the diffusion, these parameters measure the trend and the potential spread respectively. 
+							<p>In the solved form, S(t)=S(0)  exp⁡((μ-1/2 σ^2 )t+σε, μ is the drift and σ is the diffusion, these parameters measure the trend and the potential spread respectively. 
 								Estimating the two parameters can be done in any number of ways, the option I used was taking the natural log of returns to find the expected value (μ) and the variance (σ) of 
-								observed returns. The stochastic term B(t) is estimated by taking a random selection from a normal distribution with a mean of 0 and a standard deviation of square root Δt, 
+								observed returns. The error term ε is estimated by taking a random selection from a normal distribution with a mean of 0 and a standard deviation of √Δt, 
 								where Δt  is one divided by the step size. The underlying assumption with this approach to estimating μ and σ is that the stock’s distribution of log returns is constant through time, 
 								with only the numerical price changing.  </p>
 							
@@ -47,66 +47,88 @@
 						<div class="inner">
 							<h1 class="major">Forecasting with GBM</h1>
 							<p>In Python I created a function that could take parameters and would return a graph with the simulated Geometric Brownian motion price paths for a stock, a histogram of the 
-								final predicted price of the simulated paths, the mean predicted price, the starting price, and the actual price on the forecasted date. Figures #{whatever} &{whatever} shows 
+								final predicted price of the simulated paths, the mean predicted price, the starting price, and the actual price on the forecasted date. Figure 3 shows 
 								the function that I defined. The parameters are scaled to the time frame that the forecast is predicting for. This is done by multiplying μ with the number of steps and σ by the square root of 
 								the number of steps, steps are defined as the number of trading days that the price was specified to be predicted for. Doing this scales the parameters in a manner that is usable in predictions 
 								that are further than one trading day as the μ and σ that are originally estimated are in daily units.</p>
-							<p>I primarily used BAC stock data to test and analyze the model’s accuracy and to see what the number of days that produced the best results, however I also used OMCL and BTC (Bitcoin) for personal curiosity. 
-								Figure #{whatever} shows the resulting graph for a time step of {} and all of the simulated paths as well as the true price path that was observed. Figure #{whatever} shows the histogram of predicted values at 
+							<p>I primarily used BAC stock data to test and analyze the model’s accuracy and to see what the number of days that produced the best results, however I also used OMCL (Omnicell) and BTC (Bitcoin) for personal curiosity. 
+								Figure 1 shows the resulting graph for a time step of 21 and all of the simulated paths as well as the true price path that was observed in black. Figure 2 shows the histogram of predicted values at 
 								t = steps as well as the actual value on that date.  </p>
+							<p>
+								I conducted an analysis on the accuracy of the model I had built with the results being shown in the table below. I started by randomly selecting five starting and ending dates between 2012 and 2021
+								I focused the analysis on 21, 43, 64, 128, and 252 trading days which equates to 1, 2, 3, 6, and 12 months respectively. The findings of the analysis shows that the most accurate prediction length
+								is 64 trading days with only a 3% average error over 5 samples. This is, at first glance, surprising as I would have expected to see an exponential increase in error as the forecasting steps are increased.
+								However, as the steps are increased the short term volatility that stock prices experience are smoothed out and the longer running trend captured by σ becomes dominate. A larger sample size and more financial 
+								securities would be needed to give a definitive answer but it is an informative cursory analysis.  
+							</p>
 								<div class="table-wrapper">
 									<table>
 										<thead>
 											<tr>
-												<th>Date Range</th>
+												
 												<th>Step Size</th>
-												<th>Forecasted Price</th>
-												<th>Observed Price</th>
+												<th>Percent Error</th>
+												
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td>Item One</td>
-												<td>Ante turpis integer aliquet porttitor.</td>
-												<td>29.99</td>
+												<td>21</td>
+												<td>8%</td>
+												
 											</tr>
 											<tr>
-												<td>Item Two</td>
-												<td>Vis ac commodo adipiscing arcu aliquet.</td>
-												<td>19.99</td>
+												<td>43</td>
+												<td>9%</td>
+												
 											</tr>
 											<tr>
-												<td>Item Three</td>
-												<td> Morbi faucibus arcu accumsan lorem.</td>
-												<td>29.99</td>
+												<td>64</td>
+												<td> 3%</td>
+												
 											</tr>
 											<tr>
-												<td>Item Four</td>
-												<td>Vitae integer tempus condimentum.</td>
-												<td>19.99</td>
+												<td>128</td>
+												<td>14%</td>
+												
 											</tr>
 											<tr>
-												<td>Item Five</td>
-												<td>Ante turpis integer aliquet porttitor.</td>
-												<td>29.99</td>
+												<td>252</td>
+												<td>31%</td>
+												
 											</tr>
 										</tbody>
-										<tfoot>
-											<tr>
-												<td colspan="2"></td>
-												<td>100.00</td>
-											</tr>
-										</tfoot>
+										
 									</table>
 								</div>
 							
-							
-								
-							
 						</div>
+
 						
 						
 					</section>
+				<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Figures</h1>
+							<p>
+								Figure 1
+							</p>
+							<span class = "image fit"><img src= "images/GBM_price_paths_64 days.jpg", alt="" /></span>
+							<p>
+								Figure 2
+							</p>
+							<span class = "image fit"><img src = "images\Histogram of predicted final prices_64 trading days.jpg"/></span>
+							<p>
+								Figure 3
+							</p>
+							<span><img src = "images\GBM_function.jpg",alt=""/></span>
+
+
+
+						</div>
+						
+
+				</section>
 
 			</div>
 			
@@ -115,7 +137,7 @@
 			<footer id="footer" class="wrapper alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<a href="https://github.com/akeegan97/Asset-Pricing">Link to Github Repository</a></li>
 					</ul>
 				</div>
 			</footer>
