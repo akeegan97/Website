@@ -30,10 +30,10 @@
 							<div class = "inner">
 						
 							<span class="image fit"><img src="images/Geometric Brownian Motion equation.jpg" alt="" /></span>
-							<p>This project revolved around the use of Geometric Brownian motion to forecast stock prices. Brownian motion is a continuous stochastic differential equation 
-								that has useful properties in modeling random processes. In this application a specific subset of Brownian motion was used: Geometric Brownian motion. 
+							<p>This project revolved around the use of Geometric Brownian Motion to forecast stock prices. Brownian Motion is a continuous stochastic differential equation 
+								that has useful properties in modeling random processes. In this application a specific subset of Brownian Motion was used: Geometric Brownian Motion. 
 								GBM has applications in finance since by design the output of the function is bounded as [0, +∞), such that there are no negative values given. The equation of 
-								Geometric Brownian motion is given by dS(t)= μS(t)dt+ σS(t)dW(t), solving the stochastic differential equation yields S(t)=S(0)  exp⁡((μ-1/2 σ^2 )t+σε. This is the equation that I used 
+								Geometric Brownian Motion is given by dS(t)= μS(t)dt+ σS(t)dW(t), solving the stochastic differential equation yields S(t)=S(0)  exp⁡((μ-1/2 σ^2 )t+σε. This is the equation that I used 
 								in order to simulate price paths of several different stocks. </p>
 							<p>In the solved form, S(t)=S(0)  exp⁡((μ-1/2 σ^2 )t+σε, μ is the drift and σ is the diffusion, these parameters measure the trend and the potential spread respectively. 
 								Estimating the two parameters can be done in any number of ways, the option I used was taking the natural log of returns to find the expected value (μ) and the variance (σ) of 
@@ -50,7 +50,7 @@
 							<h1 class="major">Forecasting with GBM</h1>
 							<section id = "main" class="wrapper">
 								<div class = "inner">
-								<p>In Python I created a function that could take parameters and would return a graph with the simulated Geometric Brownian motion price paths for a stock, a histogram of the 
+								<p>In Python I created a function that could take parameters and would return a graph with the simulated Geometric Brownian Motion price paths for a stock, a histogram of the 
 								final predicted price of the simulated paths, the mean predicted price, the starting price, and the actual price on the forecasted date. Figure 3 shows 
 								the function that I defined. The parameters are scaled to the time frame that the forecast is predicting for. This is done by multiplying μ with the number of steps and σ by the square root of 
 								the number of steps, steps are defined as the number of trading days that the price was specified to be predicted for. Doing this scales the parameters in a manner that is usable in predictions 
@@ -113,15 +113,15 @@
 							<h1 class="major">Figures</h1>
 							<div class="inner">
 							<p>
-								Figure 1
+								Figure 1: Price Paths Simulated with GBM
 							</p>
 							<span class = "image fit"><img src= "images/GBM_price_paths_64 days.jpg", alt="" /></span>
 							<p>
-								Figure 2
+								Figure 2: Histogram of Final Price Predicted by Each Path
 							</p>
 							<span class = "image fit"><img src = "images\Histogram of predicted final prices_64 trading days.jpg"/></span>
 							<p>
-								Figure 3
+								Figure 3 Full Function Code
 							</p>
 							<span><img src = "images\GBM_function.jpg",alt=""/></span>
 
