@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Generic - Hyperspace by HTML5 UP</title>
+		<title>C implemented Hangman</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -16,12 +16,12 @@
 
 		<!-- Header -->
 			<header id="header">
-				<a href="index.html" class="title">Hyperspace</a>
+				<a href="index.html" class="title">Hangman</a>
 				<nav>
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="generic.html" class="active">Generic</a></li>
-						<li><a href="elements.html">Elements</a></li>
+						<li><a href="index.html">Back to Main</a></li>
+						<li><a  class="active">Project</a></li>
+						
 					</ul>
 				</nav>
 			</header>
@@ -32,10 +32,38 @@
 				<!-- Main -->
 					<section id="main" class="wrapper">
 						<div class="inner">
-							<h1 class="major">A Generic Page</h1>
-							<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>
-							<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique.</p>
-							<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+							<h1 class="major">Hangman</h1>
+							
+							<p>This mini project was my first project in the C progamming language. The exe file takes a random word from the associated text file and uses that word as the secret word
+								players have to guess. In the terminal where the code runs starts by asking for a player's name so it can use that in subsequent printf statements to the terminal. After a player
+								successfully guesses the word the program asks them if they would like to play again or end the program. Ending the program is met with a message to the player telling tham thank 
+								you for playing "player". Else the program loops to the beginning and chooses a new random word.
+							</p>
+							
+						</div>
+					</section>
+					<section id="main" class="wrapper">
+						<div class = "inner">
+							<h1 class="major">Code</h1>
+							<p>This portion of the code handles the initial set up of the program. initializing the max lines and max length of the char array to store the entirety of the
+								words.txt file. Next it prints out to the terminal the welcome message, and asks for the player's name. Opening the words.txt file and looping through the file 
+								and putting each new line into the words char array. And finally initializing the random number to use as the index value of the char array and storing that value
+								as the secret word SW.
+							</thead></thead></p>
+							<span class = "image fit"><img src = "images\beginning code.jpg" alt = ""/></span>
+							<p>This portion of the code handles the logic of the program. Walking through the program first the variable for the win condition is set to 0 or False. Next the while loop 
+								for the internal logic is placed. This checks the win condition making sure it is still false once it checks that, the next portion is entered which checks the answerCheck
+								array which is initalized to the length of the secret word and made up of all 0's, if it encounters a 0 at the index value it prints a * which represents a still unguessed 
+								letter. if a 1 is found it checks the secret word array and returns the letter at the same index location as the true value in the answerCheck array. For a quick example:
+								the answerCheck array = [0,0,1,0], and the secret word array has [t,h,a,t], in this loop the same index value as the 1 in answerCheck is displayed to the player, which would
+								be a, so the printf line would read: The word is: **a*, each iteration the answerCheck array is checked and the corresponding letter is displayed. The next part of the logic 
+								asks the player for a letter stors it in the Guess variable and this Guess char is compared to the secret word, if the char matches the secret word at any position the answerCheck
+								variable at that index postion is turned to a 1. Once all characters are guessed the final loop occurs displaying the word, telling the player they won and asking if they want
+								to play again. If the player enters anything except a 0 the game is restarted with a new random word and the guess counter is reset to 0. If 1 is input the game ends and sends the final 
+								message "Thanks for playing : "player"".
+							</p>
+							<span class = "image fit"><img src = "images\ending code.jpg" alt = ""/></span>
+
 						</div>
 					</section>
 
@@ -45,7 +73,7 @@
 			<footer id="footer" class="wrapper alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						
 					</ul>
 				</div>
 			</footer>
