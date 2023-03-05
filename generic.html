@@ -25,33 +25,29 @@
 		<!-- Wrapper -->
 			<div id="wrapper">
 
-				<!-- Main -->
-					<!--maybe axing <section id="main" class="wrapper">
-						<div class="inner">
-							<h1 class="major">Super Store Data Analytics Project</h1>
-							<span class="image fit"><img src="images/pic07.jpg" alt="" /></span>
-							
-							<p>This project focused on two key aspects of Data Analytics: Exploratory Data Analysis and Forecasting. 
-							The data set was from Kaggle.com and was comprised of fictitious data from a super store. I started with the exploratory data analysis using Tableau 
-							to gain a better understanding of the data and to see any useful trends or insights. Utilizing Tableau’s data visualization tools was a great way to understand and manipulate the data. 
-							During the second part of the project, I was most interested in projecting order quantities for each of the main categories for the following year. I used Python and associated libraries
-							 to aid in building a forecast. </p>
-						</div>
-					</section> --->
+				<Main>
 					<section id = "main" class = "wrapper">
 						<div class="inner">
-							<h1 class="major">Exploratory Data Analysis</h1>
-					
-					<section id = "main" class="wrapper">
-						<div class = "inner">
+					<h1 class="major">Super Store Data Analysis</h1><section id="main" class="wrapper"></section>
+					<p>This project was focused on preforming data analytics on a fictitious super store’s historical sales data. 
+						The data set was sourced from Kaggle.com and contained information for the past several years. 
+						One of the focuses of the project was understanding the geographical component of sales to understand 
+						where the most products were sent to and where the most profit was generated. The other and more 
+						in-depth focuses was creating a forecast of sales for the three main categories of products, 
+						this way the business could optimize their product inventory for the upcoming year.</p>
+					<div></section>
+					<section id = "main" class = "wrapper">
+						<div class="inner">
+					<h1 class="major">Exploratory Data Analysis</h1><section id="main" class="wrapper">
 
-								<p><a href= "https://public.tableau.com/views/Super_Store_Tableau/Dashboard2?:language=en-US&:display_count=n&:origin=viz_share_link" target = '_blank' >Tableau Visualization Link</a></p>
+
+								<h3><a href= "https://public.tableau.com/views/Super_Store_Tableau/Dashboard2?:language=en-US&:display_count=n&:origin=viz_share_link" target = '_blank' >Tableau Visualization Link</a></h3>
 								<p>
 									I created several useful dashboards and worksheets in Tableau to help shape and visualize the data set. These helped uncover some insightful information such as the geographical dimension
 									 of the store’s presence, which customer type is the most profitable, and other useful information. 
 								</p>
 		
-								<p>Georaphical Analysis</p>
+								<h3>Georaphical Analysis</h3>
 								<span class="image fit"><img src = "images/MAP.jpg" alt ="" /></span>
 						</div>
 					</section>
@@ -66,7 +62,7 @@
 					</section>
 					<section id = "main" class="wrapper">
 						<div class="inner">
-							<p>Segment, Category, and Consumer Group Data</p>
+							<h3>Segment, Category, and Consumer Group Data</h3>
 							<span class = "image fit"><img src = "images/Profit_Orders_Segment_Category.jpg" alt ="" /></span>
 							<p>
 								Above is another useful Dashboard I created with the breakdown of the profits and units sold by Customer Segment, Category, and Subcategory. The Customer Segment that was the most profitable was Consumer, as well as the segment that ordered the most units.
@@ -74,7 +70,7 @@
 								recommendation could be to focus more on expanding technology and office supplies holdings for the store as well as scaling down on furniture items. More useful information is provided as well, such as profit levels by Subcategory. This helps to key into the specific 
 								aspects of the business that is driving profits. 
 							</p>
-							<p>Conclusion</p>
+							<h3>Conclusion</h3>
 							<p>
 								Using Tableau to perform exploratory data analysis, I found that there is not always a positive correlation between order count and profit in states. In addition, taking a closer look into the Customer Segment, Category, 
 								and Subcategories gave valuable insight to the key aspects of the business. These key aspects include the most profitable Customer Segment being Consumers, the most profitable Category being Technology, and the most profitable 
@@ -83,7 +79,7 @@
 						</div>
 					</section>
 					<section id="main" class="wrapper">
-						
+						<div class="inner">
 							<h1 class="major">Forecasting</h1>
 							
 							<div class = "inner">
@@ -95,26 +91,96 @@
 								data was actually seasonal I defined a function that could check the seasonality of each of the three timeseries. The output of the function is shown below in figure 1 for the Furniture 
 								category. The output clearly indicates that the data is in fact seasonal. It is also shown that orders sold peak in the fourth quarter of the year and drop off sharply in the first. 
 								The same function was applied to the other two categories and similar outputs were created that verified their seasonality. </p>
-							<p>Figure 1. Seasonality Decomposition<span class = "image fit"><img src = "images/Seasonal_decomp_furniture.jpg" alt="" /></span> </p>
+							<h3>Figure 1. Seasonality Decomposition<span class = "image fit"><img src = "images/Seasonal_decomp_furniture.jpg" alt="" /></span> </h3>
 							<p>After confirming that the data was seasonal, the next step was to determine if the three timeseries were stationary. I defined a function that could test the stationarity of the data sets using statsmodels.tsa.stattools 
 								library’s adfuller function with the number of lagged periods used as the number that minimized the AIC, or Akaike Information Criterion. The ADF test, or Augmented Dickey-Fuller test, investigates stationarity 
 								by conducting unit root tests on the data. The output of the test for all three categories showed stationarity at the 90%, 95%, and 99% confidence intervals. 
 							</p>
 
-								<p>Augmented Dickey-Fuller Test Code <span class = "image fit"><img src = "images/ADF_test.jpg" alt="" /></span></p>
-								<p>ADF test results for Furniture<span class = "image fit"><img src = "images\output_ADF_furniture.jpg" alt=""/></span></p>
+								
+								<h3>Augmented Dickey-Fuller Test Code </h3>
+								<pre><code>
+def ADF_test(timeseries, dataDesc):
+    print(' > Is the {} stationary ?'.format(dataDesc))
+    dftest = adfuller(timeseries.dropna(), autolag='AIC')
+    print('Test statistic = {:.3f}'.format(dftest[0]))
+    print('P-value = {:.3f}'.format(dftest[1]))
+    print('Critical values :')
+    for k, v in dftest[4].items():
+    print('\t{}: {} - the data is {} stationary with {}% confidence'.
+	format(k,v,'not' if v < dftest[0] else '', 100-int(k[:-1])))
+								</code></pre>
+								<h3>ADF test results for Furniture<span class = "image fit"><img src = "images\output_ADF_furniture.jpg" alt=""/></span></h3>
 								<p>The next step is to optimize the SARIMA parameters. I utilized a grid search to find the optimal configuration for the model. The grid search operates by finding the combination of parameters that minimize the AIC. 
 									The output of the function was given as (p,d,q)x(P,D,Q,m), where (p,d,q) are the three trend elements and (P,D,Q,m) are the seasonal elements. 
 									This was performed for each category. </p> 
 
-								<p>Grid Search Code <span class = "image fit"><img src = "images/grid_search_code.jpg" alt=""/></span></p>
-								<p>Output of gride search for the furniture category <span class = "image fit"><img src = "images\output_of gridsearch.jpg" alt=""/></span></p>
+								<h3>Grid Search Code </h3>
+								<pre>
+<code>
+def sarima_grid_search(y, seasonal_period):
+	p = d = q  =range(0,2)
+	pdq = list(itertools.product(p,d,q))
+	seasonal_pdq = [(x[0],x[1],x[2], 
+	seasonal_period) for x in list(itertools.product(p,d,q))]
+								
+	mini = float('+inf')
+								
+	for param in pdq:
+		for param_seasonal in seasonal_pdq:
+			try: 
+				mod = sm.tsa.statespace.SARIMAX(y,
+				order=param,
+				seasonal_order=param_seasonal,
+				enforce_stationarity=False,
+				enforce_invertibility=False)
+				results = mod.fit()
+				if results.aic < mini:
+					mini = results.aic
+					param_mini = param
+					param_seasonal_mini = param_seasonal
+			except:
+				continue
+	print('the set of params with min AIC is SARIMA{}x{} - 
+	AIC:{}'.format(param_mini, param_seasonal_mini, mini))
+
+								</code> </pre>
+								<h3>Output of gride search for the furniture category <span class = "image fit"><img src = "images\output_of gridsearch.jpg" alt=""/></span></h3>
 
 								<p>Once the optimized parameters had been found, the next step was to input those parameters to the defined function sarima_eva which takes the dataset, optimized parameters, period, end of training data set date, 
 									and the comparison data. I used the last year from December 2016 to December 2017, as the comparison data set
 								</p>
-								<p>sarima_eva Function and Output <span class = "image fit"><img src= "images\SARIMA_EVA_Function.jpg" alt=""/></span>
-								<span class = "image fit"><img src ="images\output_SARIMA_EVA_to_console.jpg" alt=""/> </span></p>
+								<h3>SARIMA EVA Function Code</h3>
+								<pre><code>
+def sarima_eva(y, order, seasonal_order, seasonal_period, pred_date, y_to_test):
+    mod = sm.tsa.statespace.SARIMAX(
+        y, 
+    order=order,
+    seasonal_order=seasonal_order,
+    enforce_invertibility=False,
+    )
+    results = mod.fit()
+    print(results.summary().tables[1])
+
+    pred = results.get_prediction(start=pd.to_datetime(pred_date),dynamic = False)
+    pred_ci = pred.conf_int()
+    y_forecasted = pred.predicted_mean
+    mse = ((y_forecasted - y_to_test)**2).mean()
+    print('The Root Mean Squared Error of Sarima w/ seasonal_length={} 
+	and dynamic = False {}'.format(seasonal_period,round(np.sqrt(mse),2)))
+
+
+    pred_dynamic = results.get_prediction(start = pd.to_datetime(pred_date), dynamic = True,
+	full_results = True)
+    pred_dynamic_ci = pred_dynamic.conf_int()
+    y_forecasted_dynamic = pred_dynamic.predicted_mean
+    mse_dynamic = ((y_forecasted_dynamic - y_to_test)**2).mean()
+    print('The Root Mean Square Error of Sarima w/season_length = {}
+	and dynamic = TRUE {}'.format(seasonal_period,round(np.sqrt(mse_dynamic),2)))
+
+    return(results)
+								</code></pre>
+								<h3>Output of SARIMA EVA Function</h3><span class = "image fit"><img src ="images\output_SARIMA_EVA_to_console.jpg" alt=""/> </span></p>
 								<p>The sarima_eva function works through variables given and outputs the forecasted values for the 2017 year and compares them to the real historical values. The print statement gives useful information 
 									as to how the model performed and compares the Root Mean Squared Error, sometimes called Root Mean Square Deviation, of the two model types generated. 
 								</p>
@@ -128,21 +194,60 @@
 									dynamic model as is expected. However, the dynamic model performs sufficiently well to be used as a cursory forecasting tool for real data. </p> 
 
 
-								<p>Figure 2. Plot Diagnostics <span class = "image fit"><img src ="images\sarima_eva_output_group_plots.jpg" alt="" /></span></p>
-								<p> Figure 3. Dynamic Forecast <span class = "image fit"><img src = "images\sarima_eva_dynamic_forecast_plot.jpg" alt="" /></span></p>
-								<p> Figure 4. One-Step Forecast <span class = "image fit"><img src = "images\sarima_eva_one_step_forecast_plot.jpg" alt="" /></span></p>
+								<h3>Figure 2. Plot Diagnostics <span class = "image fit"><img src ="images\sarima_eva_output_group_plots.jpg" alt="" /></span></h3>
+								<h3> Figure 3. Dynamic Forecast <span class = "image fit"><img src = "images\sarima_eva_dynamic_forecast_plot.jpg" alt="" /></span></h3>
+								<h3> Figure 4. One-Step Forecast <span class = "image fit"><img src = "images\sarima_eva_one_step_forecast_plot.jpg" alt="" /></span></h3>
 								<p>The steps that were performed above, and the outputs that are shown, were of the Furniture category. For the other two categories, the same steps were performed, and 
 									similar results were seen. </p>
 								<p>After comparing the model to the observed data, and seeing that the model was sufficiently accurate, the next step was to produce the actual forecasted values. 
 									This was done by giving the model all of the historical data to fit to and then used to predict one year into the future. Figure 5 shows the code of the forecasting 
 									function and the plotting function. Figures 6 & 7 are the historical  profit and forecasted profit, and historical units sold and forecasted units sold respectively. 
 								</p>
-								<p>Figure 5. Forecast Function<span class = "image fit"><img src = "images\forecast_func.jpg" alt = ""/></span></p>
-								<p>Figure 6. Profit Plot<span class = "image fit"><img src = "images\Profit_Forecast.jpg" alt = ""/></span></p>
-								<p>Figure 7. Quantity Plot<span class = "image fit"><img src = "images\Units_Sold_Forecast.jpg" alt = ""/></span></p>
+								<h3>Forecast Function and Plotting Function</h3>
+								<pre><code>
+def forecast(model, predict_steps, y):
+	pred_uc = model.get_forecast(steps = predict_steps)
+	pred_ci = pred_uc.conf_int()
+	pm = pred_uc.predicted_mean.reset_index()
+	pm.columns = ['Date', 'Predicted_Mean']
+	pci = pred_ci.reset_index()
+	pci.columns = ['Date', 'Lower Bound', 'Upper Bound']
+	final_table = pm.join(pci.set_index('Date'), on = 'Date')
+	final_table = pd.DataFrame(final_table)
+								
+	return(final_table)
+								
+								
+#Function that displays the forecasted data:
+								
+def forecasted_plot(model,predict_steps,y):
+	pred_uc = model.get_forecast(steps = predict_steps)
+	pred_ci = pred_uc.conf_int()
+	ax = y.plot(label = 'Observed', figsize= (14,7))
+	pred_uc.predicted_mean.plot(ax=ax, label = "Forecast")
+	ax.fill_between(pred_ci.index,
+	pred_ci.iloc[:,0],
+	pred_ci.iloc[:,1], color = 'k', alpha = .25)
+	ax.set_xlabel('Date')
+	ax.set_ylabel(y.name)
+	plt.legend()
+	plt.show()
+								
+								</code></pre>
+								<h3>Figure 5. Profit Plot<span class = "image fit"><img src = "images\Profit_Forecast.jpg" alt = ""/></span></h3>
+								<h3>Figure 6. Quantity Plot<span class = "image fit"><img src = "images\Units_Sold_Forecast.jpg" alt = ""/></span></h3>
 								<p>The values in figure 6 are derived from taking average profit per unit sold for each category and multiplying the forecasted units sold to extrapolate the forecasted profit. 
 									Whilst this method makes several assumptions, including that the proportion of products to be sold will be the same as in the past and that profit margins will remain the same, 
 									the purpose is as a general overview on how each Category profits will look in the forecasted year.  
+								</p>
+								<h3>Conclusion</h3>
+								<p>
+									After creating a forecast it was found that the sales are seasonal and this information can better help the business 
+									by using the forecast to properly optimize their inventory process as well as properly allocate 
+									investments into marketing or other areas to drive sales to product categories that are not as popular.
+									 Continuing the data indicates an increase in sales for all three categories is forecasted and is a 
+									 good sign that the business is growing and taking the findings of the forecast and exploratory data 
+									 analysis can increase the growth rate even more.
 								</p>
 						</div>
 					</section>
