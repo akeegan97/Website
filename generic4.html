@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Generic - Hyperspace by HTML5 UP</title>
+		<title>COBOL Project</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -15,16 +15,15 @@
 	<body class="is-preload">
 
 		<!-- Header -->
-			<header id="header">
-				<a href="index.html" class="title">Hyperspace</a>
-				<nav>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="generic.html" class="active">Generic</a></li>
-						<li><a href="elements.html">Elements</a></li>
-					</ul>
-				</nav>
-			</header>
+		<header id="header">
+			<a class="title">COBOL</a>
+			<nav>
+				<ul>
+					<li><a href="index.html">Back to Main</a></li>
+					<li><a  class="active">Project</a></li>
+				</ul>
+			</nav>
+		</header>
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -32,23 +31,113 @@
 				<!-- Main -->
 					<section id="main" class="wrapper">
 						<div class="inner">
-							<h1 class="major">A Generic Page</h1>
-							<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>
-							<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique.</p>
-							<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+							<h1 class="major">Programming in COBOL</h1>
+							
+							<h3>
+								Project Overview
+							</h3>
+							<p>
+								This project was my first entrance to the COBOL programming language I 
+								started by creating a payroll calculator program. I created a hierarchical 
+								variable called employee which is a table or array variable in COBOL and 
+								occurs between 0 and 50 times depending on a counting variable that gets 
+								incremented based on the loop further down in the program in 003-para code 
+								block. Inside of the employee variable there are four sub-fields being: 
+								first name, last name, title, and salary. So for every instance of an 
+								employee variable the four subfields are stored as well. After the user 
+								has input the employees that they want to they will enter a negative 
+								response when prompted for another employee, once that happens the total 
+								staff will be printed to the console as well as the total combined salary 
+								expense of the staff and the per pay period cost, which is calculated as a 
+								bi-weekly frequency where there are 26 pay periods per year.
+							</p>
+							<h3>Program</h3>
+							<pre><code>
+identification division.
+program-id. main_1.
+environment division.
+data division.
+working-storage section.
+01 employee occurs 0 to 50 times depending on ws-counter.
+        05 ws-emp-f-name pic x(12) .
+        05 ws-emp-l-name pic x(12) .
+        05 ws-emp-title pic x(25) .
+        05 ws-emp-salary pic 9(12).
+01 ws-sal-exp pic 9(12)v9(2).
+01 ws-counter pic 9(2) value is 0.
+01 I pic 9(2) value is 0.
+01 ws-ans pic x(1).
+01 ws-pay-period pic 9(10)v9(2).
+01 ws-pp-out pic $$$,$$$,$$$.99 value is 0.
+01 ws-sal-tot pic $$$,$$$,$$$.99 value is 0.
+01 J pic 9(2) value is 0.
+procedure division.
+  
+001-para.
+    Display "*******************************************".
+    Display "*       Welcome to The Staff Portal       *".
+    Display "*******************************************".
+    go to 002-para.
+002-para.
+    Display "Add Employee Enter Y/N".
+    accept ws-ans.
+    go to 003-para.
+003-para.
+    if ws-ans = 'y' or 'Y'
+        add 1 to ws-counter
+        go to 004-para
+    else    
+        go to 005-para.
+004-para.
+    Display "Enter Employee's First Name: ".
+    accept ws-emp-f-name(ws-counter)
+    display "Enter Employee's Last Name: ".
+    accept ws-emp-l-name(ws-counter)
+    display "Enter Employee's Title: ".
+    accept ws-emp-title(ws-counter)
+    display "Enter Employee's Salary: ".
+    accept ws-emp-salary(ws-counter)
+
+    go to 002-para.
+005-para.
+    perform 006-para until I > ws-counter
+    go to 008-para.
+006-para.
+    compute ws-sal-exp = ws-sal-exp + ws-emp-salary(I)
+    add 1 to I.
+007-para.
+    move ws-sal-exp to ws-sal-tot
+    compute ws-pay-period = (ws-sal-exp / 26) 
+           
+    move ws-pay-period to ws-pp-out
+    Display "Total Salary Expense: " ws-sal-tot
+    Display "Expense Per Pay Period: " ws-pp-out
+    go to 011-para.
+008-para.
+    Display "Current Staff: ".
+    go to 009-para.
+009-para.
+    perform 010-para until J > ws-counter
+    go to 007-para.
+010-para.
+    Display employee(J)
+    add 1 to J.
+011-para.
+    stop run.
+							</code></pre>
 						</div>
 					</section>
 
 			</div>
 
 		<!-- Footer -->
-			<footer id="footer" class="wrapper alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</div>
-			</footer>
+		<footer id="footer" class="wrapper alt">
+			<div class="inner">
+				<ul class="menu">
+					<a href="https://github.com/akeegan97/COBOL-PAYROLL"target = "_blank">Link to Github Repository</a></li>
+				</ul>
+			</div>
+		</footer>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
