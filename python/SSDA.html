@@ -5,8 +5,8 @@
 		<title>Super Store Project</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
 
@@ -15,8 +15,8 @@
 				<a class="title">Super Store</a>
 				<nav>
 					<ul>
-						<li><a href="index.html">Back to Main</Main></a></li>
-						<li><a  class="active">Project</a></li>
+						<li><a href="../main.html">Back to Main</a></li>
+						<li><a href="../Python.html">Back to Projects</Main></a></li>
 						
 					</ul>
 				</nav>
@@ -48,7 +48,7 @@
 								</p>
 		
 								<h3>Georaphical Analysis</h3>
-								<span class="image fit"><img src = "images/MAP.jpg" alt ="" /></span>
+								<span class="image fit"><img src = "../images/MAP.jpg" alt ="" /></span>
 						</div>
 					</section>
 					<section id="main" class="wrapper">
@@ -63,7 +63,7 @@
 					<section id = "main" class="wrapper">
 						<div class="inner">
 							<h3>Segment, Category, and Consumer Group Data</h3>
-							<span class = "image fit"><img src = "images/Profit_Orders_Segment_Category.jpg" alt ="" /></span>
+							<span class = "image fit"><img src = "../images/Profit_Orders_Segment_Category.jpg" alt ="" /></span>
 							<p>
 								Above is another useful Dashboard I created with the breakdown of the profits and units sold by Customer Segment, Category, and Subcategory. The Customer Segment that was the most profitable was Consumer, as well as the segment that ordered the most units.
 								Another aspect of the dashboard shows that Technology was the most profitable Category for the store bringing in $145,000 in profit, Office Supplies accounted for $120,000, and Furniture being the smallest accounted for $18,000. With this insight, a potential 
@@ -83,7 +83,7 @@
 							<h1 class="major">Forecasting</h1>
 							
 							<div class = "inner">
-							<span class="image fit"><img src="images\Units_Sold_Forecast.jpg" alt="" /></span>
+							<span class="image fit"><img src="../images\Units_Sold_Forecast.jpg" alt="" /></span>
 							<p>The next portion of the project was to conduct a forecast of units sold for each of the three main categories: Technology, Furniture, and Office Supplies. I chose to apply a SARIMA, 
 								or Seasonal Autoregressive Integrated Moving Average model to forecast the units sold because of the strong seasonal component of the data that would not be captured with the standard ARIMA model.  </p>
 							<p>I used Python to manipulate the data set in order to make the calculations and forecasting more efficient. I started by creating three different Pandas data frames to store each of the different categories, 
@@ -91,7 +91,7 @@
 								data was actually seasonal I defined a function that could check the seasonality of each of the three timeseries. The output of the function is shown below in figure 1 for the Furniture 
 								category. The output clearly indicates that the data is in fact seasonal. It is also shown that orders sold peak in the fourth quarter of the year and drop off sharply in the first. 
 								The same function was applied to the other two categories and similar outputs were created that verified their seasonality. </p>
-							<h3>Figure 1. Seasonality Decomposition<span class = "image fit"><img src = "images/Seasonal_decomp_furniture.jpg" alt="" /></span> </h3>
+							<h3>Figure 1. Seasonality Decomposition<span class = "image fit"><img src = "../images/Seasonal_decomp_furniture.jpg" alt="" /></span> </h3>
 							<p>After confirming that the data was seasonal, the next step was to determine if the three timeseries were stationary. I defined a function that could test the stationarity of the data sets using statsmodels.tsa.stattools 
 								library’s adfuller function with the number of lagged periods used as the number that minimized the AIC, or Akaike Information Criterion. The ADF test, or Augmented Dickey-Fuller test, investigates stationarity 
 								by conducting unit root tests on the data. The output of the test for all three categories showed stationarity at the 90%, 95%, and 99% confidence intervals. 
@@ -110,7 +110,7 @@ def ADF_test(timeseries, dataDesc):
     print('\t{}: {} - the data is {} stationary with {}% confidence'.
 	format(k,v,'not' if v < dftest[0] else '', 100-int(k[:-1])))
 								</code></pre>
-								<h3>ADF test results for Furniture<span class = "image fit"><img src = "images\output_ADF_furniture.jpg" alt=""/></span></h3>
+								<h3>ADF test results for Furniture<span class = "image fit"><img src = "../images\output_ADF_furniture.jpg" alt=""/></span></h3>
 								<p>The next step is to optimize the SARIMA parameters. I utilized a grid search to find the optimal configuration for the model. The grid search operates by finding the combination of parameters that minimize the AIC. 
 									The output of the function was given as (p,d,q)x(P,D,Q,m), where (p,d,q) are the three trend elements and (P,D,Q,m) are the seasonal elements. 
 									This was performed for each category. </p> 
@@ -145,7 +145,7 @@ def sarima_grid_search(y, seasonal_period):
 	AIC:{}'.format(param_mini, param_seasonal_mini, mini))
 
 								</code> </pre>
-								<h3>Output of gride search for the furniture category <span class = "image fit"><img src = "images\output_of gridsearch.jpg" alt=""/></span></h3>
+								<h3>Output of gride search for the furniture category <span class = "image fit"><img src = "../images\output_of gridsearch.jpg" alt=""/></span></h3>
 
 								<p>Once the optimized parameters had been found, the next step was to input those parameters to the defined function sarima_eva which takes the dataset, optimized parameters, period, end of training data set date, 
 									and the comparison data. I used the last year from December 2016 to December 2017, as the comparison data set
@@ -180,7 +180,7 @@ def sarima_eva(y, order, seasonal_order, seasonal_period, pred_date, y_to_test):
 
     return(results)
 								</code></pre>
-								<h3>Output of SARIMA EVA Function</h3><span class = "image fit"><img src ="images\output_SARIMA_EVA_to_console.jpg" alt=""/> </span></p>
+								<h3>Output of SARIMA EVA Function</h3><span class = "image fit"><img src ="../images\output_SARIMA_EVA_to_console.jpg" alt=""/> </span></p>
 								<p>The sarima_eva function works through variables given and outputs the forecasted values for the 2017 year and compares them to the real historical values. The print statement gives useful information 
 									as to how the model performed and compares the Root Mean Squared Error, sometimes called Root Mean Square Deviation, of the two model types generated. 
 								</p>
@@ -194,9 +194,9 @@ def sarima_eva(y, order, seasonal_order, seasonal_period, pred_date, y_to_test):
 									dynamic model as is expected. However, the dynamic model performs sufficiently well to be used as a cursory forecasting tool for real data. </p> 
 
 
-								<h3>Figure 2. Plot Diagnostics <span class = "image fit"><img src ="images\sarima_eva_output_group_plots.jpg" alt="" /></span></h3>
-								<h3> Figure 3. Dynamic Forecast <span class = "image fit"><img src = "images\sarima_eva_dynamic_forecast_plot.jpg" alt="" /></span></h3>
-								<h3> Figure 4. One-Step Forecast <span class = "image fit"><img src = "images\sarima_eva_one_step_forecast_plot.jpg" alt="" /></span></h3>
+								<h3>Figure 2. Plot Diagnostics <span class = "image fit"><img src ="../images\sarima_eva_output_group_plots.jpg" alt="" /></span></h3>
+								<h3> Figure 3. Dynamic Forecast <span class = "image fit"><img src = "../images\sarima_eva_dynamic_forecast_plot.jpg" alt="" /></span></h3>
+								<h3> Figure 4. One-Step Forecast <span class = "image fit"><img src = "../images\sarima_eva_one_step_forecast_plot.jpg" alt="" /></span></h3>
 								<p>The steps that were performed above, and the outputs that are shown, were of the Furniture category. For the other two categories, the same steps were performed, and 
 									similar results were seen. </p>
 								<p>After comparing the model to the observed data, and seeing that the model was sufficiently accurate, the next step was to produce the actual forecasted values. 
@@ -234,8 +234,8 @@ def forecasted_plot(model,predict_steps,y):
 	plt.show()
 								
 								</code></pre>
-								<h3>Figure 5. Profit Plot<span class = "image fit"><img src = "images\Profit_Forecast.jpg" alt = ""/></span></h3>
-								<h3>Figure 6. Quantity Plot<span class = "image fit"><img src = "images\Units_Sold_Forecast.jpg" alt = ""/></span></h3>
+								<h3>Figure 5. Profit Plot<span class = "image fit"><img src = "../images\Profit_Forecast.jpg" alt = ""/></span></h3>
+								<h3>Figure 6. Quantity Plot<span class = "image fit"><img src = "../images\Units_Sold_Forecast.jpg" alt = ""/></span></h3>
 								<p>The values in figure 6 are derived from taking average profit per unit sold for each category and multiplying the forecasted units sold to extrapolate the forecasted profit. 
 									Whilst this method makes several assumptions, including that the proportion of products to be sold will be the same as in the past and that profit margins will remain the same, 
 									the purpose is as a general overview on how each Category profits will look in the forecasted year.  
@@ -266,13 +266,13 @@ def forecasted_plot(model,predict_steps,y):
 			</footer>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
 
 	</body>
 </html>
