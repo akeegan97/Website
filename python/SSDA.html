@@ -29,13 +29,18 @@
 					<section id = "main" class = "wrapper">
 						<div class="inner">
 					<h1 class="major">Super Store Data Analysis</h1><section id="main" class="wrapper"></section>
-					<p>This project was focused on preforming data analytics on a fictitious super store’s historical sales data. 
-						The data set was sourced from Kaggle.com and contained information for the past several years. 
-						One of the focuses of the project was understanding the geographical component of sales to understand 
-						where the most products were sent to and where the most profit was generated. The other and more 
-						in-depth focuses was creating a forecast of sales for the three main categories of products, 
-						this way the business could optimize their product inventory for the upcoming year.</p>
-					<div></section>
+					<div class="inner">
+					<p> The "Super Store Data Analysis" project embarked on an analytical journey through the historical sales data of a 
+						hypothetical super store, utilizing a dataset obtained from Kaggle.com that spans several years. 
+						The project's analytical endeavors were twofold. Initially, it delved into the geographical dimensions of sales, 
+						aiming to uncover insights into the most significant destinations for product shipments and the regions generating the 
+						highest profits. Subsequently, the analysis took a deeper dive into forecasting sales across the store's three primary 
+						product categories. By leveraging Python for data analysis, the project aimed to equip the business with predictive insights, 
+						enabling strategic inventory optimization for the forthcoming year and beyond.
+					</p>
+					<div>
+					</div>
+					</section>
 					<section id = "main" class = "wrapper">
 						<div class="inner">
 					<h1 class="major">Exploratory Data Analysis</h1><section id="main" class="wrapper">
@@ -43,8 +48,12 @@
 
 								<h3><a href= "https://public.tableau.com/views/Super_Store_Tableau/Dashboard2?:language=en-US&:display_count=n&:origin=viz_share_link" target = '_blank' >Tableau Visualization Link</a></h3>
 								<p>
-									I created several useful dashboards and worksheets in Tableau to help shape and visualize the data set. These helped uncover some insightful information such as the geographical dimension
-									 of the store’s presence, which customer type is the most profitable, and other useful information. 
+									In this project, I harnessed the power of Tableau to develop an array of insightful dashboards and 
+									worksheets, meticulously designed to elucidate the dataset. These visual tools were instrumental in revealing 
+									key insights, such as the extensive geographical footprint of the store, identifying the most profitable customer 
+									segments, and uncovering other valuable data points. The visualizations crafted in Tableau not only enhanced the analytical 
+									process but also provided a clear and intuitive means to comprehend complex data relationships and trends within the super 
+									store's operational scope.
 								</p>
 		
 								<h3>Georaphical Analysis</h3>
@@ -54,9 +63,12 @@
 					<section id="main" class="wrapper">
 						<div class = "inner">
 							<p>
-								Geographical analysis showed that there was not a proportional relationship to quantity of units sold and profit for states. This was an interesting discovery as some states did follow the assumed relationship such as California, 
-								being the state that had the largest quantity of units bought and being most profitable whilst others did not. Texas was one of the states that had a large number of orders sent and was the least profitable state returning negative profits 
-								over the course of the recorded data. This counterintuitive relationship holds for several other states as well, as shown in the Geographic Dashboard on Tableau. 
+								The geographical analysis revealed a surprising lack of correlation between the quantity of units sold and profit across 
+								states, challenging initial expectations. For instance, California exemplified the anticipated relationship, leading in 
+								both unit sales and profitability. However, this pattern was not universally observed. Texas, despite its high volume of 
+								orders, emerged as notably less profitable, even incurring losses over the observed period. This intriguing divergence was 
+								highlighted in the Geographic Dashboard on Tableau, showcasing that such counterintuitive relationships were not isolated 
+								incidents but prevalent among several states, prompting a reevaluation of distribution and marketing strategies.
 							</p>
 						</div>
 					</section>
@@ -65,16 +77,27 @@
 							<h3>Segment, Category, and Consumer Group Data</h3>
 							<span class = "image fit"><img src = "../images/Profit_Orders_Segment_Category.jpg" alt ="" /></span>
 							<p>
-								Above is another useful Dashboard I created with the breakdown of the profits and units sold by Customer Segment, Category, and Subcategory. The Customer Segment that was the most profitable was Consumer, as well as the segment that ordered the most units.
-								Another aspect of the dashboard shows that Technology was the most profitable Category for the store bringing in $145,000 in profit, Office Supplies accounted for $120,000, and Furniture being the smallest accounted for $18,000. With this insight, a potential 
-								recommendation could be to focus more on expanding technology and office supplies holdings for the store as well as scaling down on furniture items. More useful information is provided as well, such as profit levels by Subcategory. This helps to key into the specific 
-								aspects of the business that is driving profits. 
+								In another insightful dashboard, I dissected profits and unit sales across Customer Segments, Categories, and Subcategories. 
+								The Consumer segment emerged as the most lucrative and the largest in terms of units ordered, underscoring its significance to the store's 
+								success. The dashboard further revealed Technology as the top-earning category, generating $145,000 in profits, followed by Office Supplies at 
+								$120,000, and Furniture trailing with $18,000. These findings suggest a strategic pivot might be beneficial, advocating for an increased focus on 
+								Technology and Office Supplies while considering a reduction in Furniture offerings.
+
+								Additionally, the dashboard provided a granular view of profitability by Subcategory, offering precise insights into the store's 
+								profit drivers. This level of detail enables targeted adjustments to the product mix, ensuring the store capitalizes on the most profitable 
+								aspects of its business.
+								
 							</p>
 							<h3>Conclusion</h3>
 							<p>
-								Using Tableau to perform exploratory data analysis, I found that there is not always a positive correlation between order count and profit in states. In addition, taking a closer look into the Customer Segment, Category, 
-								and Subcategories gave valuable insight to the key aspects of the business. These key aspects include the most profitable Customer Segment being Consumers, the most profitable Category being Technology, and the most profitable 
-								Subcategory being Copiers. Additional insight is viewable on the dashboard as well. 
+								Leveraging Tableau for exploratory data analysis unveiled intriguing patterns, 
+								notably the lack of a consistent positive correlation between the number of orders 
+								and profit across different states. A deeper dive into Customer Segments, Categories, 
+								and Subcategories shed light on crucial business dynamics. It was discovered that Consumers 
+								constitute the most profitable Customer Segment, Technology leads as the highest-earning Category, 
+								and within Subcategories, Copiers stand out for their exceptional profitability. The dashboard further 
+								enriches this analysis, presenting additional insights that underscore the strategic areas of focus for 
+								enhancing business outcomes.
 							</p>
 						</div>
 					</section>
@@ -84,20 +107,21 @@
 							
 							<div class = "inner">
 							<span class="image fit"><img src="../images\Units_Sold_Forecast.jpg" alt="" /></span>
-							<p>The next portion of the project was to conduct a forecast of units sold for each of the three main categories: Technology, Furniture, and Office Supplies. I chose to apply a SARIMA, 
-								or Seasonal Autoregressive Integrated Moving Average model to forecast the units sold because of the strong seasonal component of the data that would not be captured with the standard ARIMA model.  </p>
-							<p>I used Python to manipulate the data set in order to make the calculations and forecasting more efficient. I started by creating three different Pandas data frames to store each of the different categories, 
-								filtering out unneeded columns and checking for any nan values. I used the statsmodels.api library for the data as it has built in functions that aid in creating a SARIMA timeseries model. To ensure that the 
-								data was actually seasonal I defined a function that could check the seasonality of each of the three timeseries. The output of the function is shown below in figure 1 for the Furniture 
-								category. The output clearly indicates that the data is in fact seasonal. It is also shown that orders sold peak in the fourth quarter of the year and drop off sharply in the first. 
-								The same function was applied to the other two categories and similar outputs were created that verified their seasonality. </p>
+							<p>
+								The subsequent phase of the project involved forecasting sales for the three primary categories: Technology, Furniture, and Office Supplies. 
+								Given the pronounced seasonal trends observed in the data, I opted for a SARIMA (Seasonal Autoregressive Integrated Moving Average) model over a 
+								traditional ARIMA model to more accurately capture these variations. </p>
+								<p>To facilitate efficient analysis and forecasting, I utilized Python for data manipulation, organizing the data into three separate Pandas 
+									dataframes corresponding to each category. This process included filtering out irrelevant columns and addressing any missing values. I employed the 
+									statsmodels.api library, which offers comprehensive functionalities for constructing SARIMA time series models. To verify the seasonal nature of our 
+									datasets, I implemented a function specifically designed to evaluate seasonality in each time series. The results for the Furniture category, depicted 
+									in figure 1, unequivocally confirm the seasonal pattern of the data, with a notable sales peak in the fourth quarter.</p>
 							<h3>Figure 1. Seasonality Decomposition<span class = "image fit"><img src = "../images/Seasonal_decomp_furniture.jpg" alt="" /></span> </h3>
-							<p>After confirming that the data was seasonal, the next step was to determine if the three timeseries were stationary. I defined a function that could test the stationarity of the data sets using statsmodels.tsa.stattools 
-								library’s adfuller function with the number of lagged periods used as the number that minimized the AIC, or Akaike Information Criterion. The ADF test, or Augmented Dickey-Fuller test, investigates stationarity 
-								by conducting unit root tests on the data. The output of the test for all three categories showed stationarity at the 90%, 95%, and 99% confidence intervals. 
-							</p>
-
-								
+							<p>Having established the seasonal nature of the data, the ensuing step was to assess the stationarity of the three time series. To achieve this, 
+								I devised a function leveraging the adfuller function from the statsmodels.tsa.stattools library. This function, known as the Augmented Dickey-Fuller (ADF) 
+								test, is designed to detect unit roots, thereby testing for stationarity in time series data. The optimal number of lagged periods was determined based on the 
+								lowest Akaike Information Criterion (AIC) value. Remarkably, the ADF test results for the Technology, Furniture, and Office Supplies categories all demonstrated 
+								stationarity, satisfying the criteria at the 90%, 95%, and 99% confidence levels.</p>
 								<h3>Augmented Dickey-Fuller Test Code </h3>
 								<pre><code>
 def ADF_test(timeseries, dataDesc):
@@ -111,10 +135,11 @@ def ADF_test(timeseries, dataDesc):
 	format(k,v,'not' if v < dftest[0] else '', 100-int(k[:-1])))
 								</code></pre>
 								<h3>ADF test results for Furniture<span class = "image fit"><img src = "../images\output_ADF_furniture.jpg" alt=""/></span></h3>
-								<p>The next step is to optimize the SARIMA parameters. I utilized a grid search to find the optimal configuration for the model. The grid search operates by finding the combination of parameters that minimize the AIC. 
-									The output of the function was given as (p,d,q)x(P,D,Q,m), where (p,d,q) are the three trend elements and (P,D,Q,m) are the seasonal elements. 
-									This was performed for each category. </p> 
-
+								<p>To fine-tune the SARIMA model for peak performance, I embarked on optimizing its parameters through a comprehensive grid search method. 
+									This approach aims to identify the parameter combination that yields the lowest Akaike Information Criterion (AIC), thereby ensuring the most 
+									efficient model. The parameter sets are denoted as (p,d,q)x(P,D,Q,m), where (p,d,q) represent the model's non-seasonal components—trend autoregression order, 
+									differencing order, and moving average order, respectively—and (P,D,Q,m) symbolize the seasonal aspects of the model. This optimization process was meticulously 
+									carried out for each of the three main categories, ensuring that each model was precisely tailored to its corresponding dataset.</p>
 								<h3>Grid Search Code </h3>
 								<pre>
 <code>
@@ -147,9 +172,10 @@ def sarima_grid_search(y, seasonal_period):
 								</code> </pre>
 								<h3>Output of gride search for the furniture category <span class = "image fit"><img src = "../images\output_of gridsearch.jpg" alt=""/></span></h3>
 
-								<p>Once the optimized parameters had been found, the next step was to input those parameters to the defined function sarima_eva which takes the dataset, optimized parameters, period, end of training data set date, 
-									and the comparison data. I used the last year from December 2016 to December 2017, as the comparison data set
-								</p>
+								<p>With the optimal SARIMA parameters identified, the subsequent step involved their application within the `sarima_eva` 
+									function. This function requires the dataset, optimized parameters, forecast period, the cutoff date for the training dataset, 
+									and the dataset for comparison as inputs. For this analysis, I selected the data spanning from December 2016 to December 2017 as the 
+									comparison dataset, allowing for a precise evaluation of the model's forecasting accuracy against known outcomes.</p>
 								<h3>SARIMA EVA Function Code</h3>
 								<pre><code>
 def sarima_eva(y, order, seasonal_order, seasonal_period, pred_date, y_to_test):
@@ -181,28 +207,33 @@ def sarima_eva(y, order, seasonal_order, seasonal_period, pred_date, y_to_test):
     return(results)
 								</code></pre>
 								<h3>Output of SARIMA EVA Function</h3><span class = "image fit"><img src ="../images\output_SARIMA_EVA_to_console.jpg" alt=""/> </span></p>
-								<p>The sarima_eva function works through variables given and outputs the forecasted values for the 2017 year and compares them to the real historical values. The print statement gives useful information 
-									as to how the model performed and compares the Root Mean Squared Error, sometimes called Root Mean Square Deviation, of the two model types generated. 
-								</p>
-								
-								<p>The second part of the sarima_eva function is the portion that displays the plots of useful information. These plots are useful to see the degree of accuracy that the model produced compared to real historical observed values. 
-									Figure 2 shows the plot diagnostics with a Q-Q plot, standardized residual graph, histogram, and correlogram. The Q-Q plot shows that the residuals follow a Normal distribution, and the correlogram shows 
-									that the lag of 1 is suitable for the moving average portion of the model. Figures 3 and 4 show how the different model types compare to the observed data. Figure 5 is the dynamic model. 
-									A dynamic model uses its predicted values to continue forecasting. For example, the value at T+1 is predicted from the historical values. The value at T+2 is predicted with the historical values plus the 
-									predicted value at T+1, this continues on until the last value in the forecasting period is predicted. Figure 6 is the one-step ahead model, which takes the historical values to predict T+1 and the real value 
-									of T+1 is used to predict T+2 and so on until the last value. Meaning that the model is only truly predicting 1 time period in the future. The output shows that the one-step ahead model performs better than the 
-									dynamic model as is expected. However, the dynamic model performs sufficiently well to be used as a cursory forecasting tool for real data. </p> 
+								<p>The `sarima_eva` function processes the input variables to forecast values for the year 2017, subsequently comparing these predictions with the 
+									actual historical data. The function's output, articulated through print statements, provides critical insights into the model's performance. 
+									It particularly highlights the Root Mean Squared Error (RMSE), also known as Root Mean Square Deviation, between the forecasted outcomes and the 
+									real values. This comparison offers a quantitative measure of the accuracy of the two model variants produced by the function, enabling an evaluation 
+									of their predictive reliability.</p>
 
+									<p>The latter segment of the `sarima_eva` function is dedicated to visualizing the model's forecasting accuracy through various plots, 
+										juxtaposing predicted values against actual historical data. Figure 2 presents diagnostic plots, including a Q-Q plot, standardized residuals, 
+										histogram, and correlogram. The Q-Q plot confirms that residuals are normally distributed, and the correlogram indicates that a lag of 1 is 
+										appropriate for the model's moving average component. Figures 3 and 4 contrast different model approaches with the observed data, showcasing 
+										their respective accuracies.</p>
+									<p>Figure 5 introduces the dynamic model, which recursively uses its own forecasts for future predictions, enhancing the complexity of 
+										forecasting as it progresses through the timeline. Conversely, Figure 6 illustrates the one-step ahead model, which consistently uses actual 
+										historical data for each subsequent forecast, inherently limiting its predictions to one period ahead. The comparative analysis reveals the one-step 
+										ahead model's superior performance, aligning with expectations. Nevertheless, the dynamic model's competent forecasting capabilities render it a valuable 
+										tool for preliminary analysis and planning.</p>
 
 								<h3>Figure 2. Plot Diagnostics <span class = "image fit"><img src ="../images\sarima_eva_output_group_plots.jpg" alt="" /></span></h3>
 								<h3> Figure 3. Dynamic Forecast <span class = "image fit"><img src = "../images\sarima_eva_dynamic_forecast_plot.jpg" alt="" /></span></h3>
 								<h3> Figure 4. One-Step Forecast <span class = "image fit"><img src = "../images\sarima_eva_one_step_forecast_plot.jpg" alt="" /></span></h3>
-								<p>The steps that were performed above, and the outputs that are shown, were of the Furniture category. For the other two categories, the same steps were performed, and 
-									similar results were seen. </p>
-								<p>After comparing the model to the observed data, and seeing that the model was sufficiently accurate, the next step was to produce the actual forecasted values. 
-									This was done by giving the model all of the historical data to fit to and then used to predict one year into the future. Figure 5 shows the code of the forecasting 
-									function and the plotting function. Figures 6 & 7 are the historical  profit and forecasted profit, and historical units sold and forecasted units sold respectively. 
-								</p>
+								<p>The methodology detailed above, demonstrated through the Furniture category, was uniformly applied to the Technology and Office Supplies categories, 
+									yielding analogous insights. The consistency of the results across all categories underscores the robustness and applicability of the SARIMA model for 
+									this type of data analysis.</p>
+								<p>Upon validating the model's accuracy against observed data, the next phase involved generating forward-looking forecasts. This entailed fitting the 
+									model to the entire historical dataset to project sales and profits one year into the future. The procedure and the corresponding Python code are 
+									illustrated in Figure 5, which details the forecasting and plotting functions. Figures 6 and 7 display the actual versus forecasted profits and units sold, 
+									offering a visual representation of the model's predictive capacity and the anticipated financial and operational performance of the store.</p>
 								<h3>Forecast Function and Plotting Function</h3>
 								<pre><code>
 def forecast(model, predict_steps, y):
@@ -236,19 +267,15 @@ def forecasted_plot(model,predict_steps,y):
 								</code></pre>
 								<h3>Figure 5. Profit Plot<span class = "image fit"><img src = "../images\Profit_Forecast.jpg" alt = ""/></span></h3>
 								<h3>Figure 6. Quantity Plot<span class = "image fit"><img src = "../images\Units_Sold_Forecast.jpg" alt = ""/></span></h3>
-								<p>The values in figure 6 are derived from taking average profit per unit sold for each category and multiplying the forecasted units sold to extrapolate the forecasted profit. 
-									Whilst this method makes several assumptions, including that the proportion of products to be sold will be the same as in the past and that profit margins will remain the same, 
-									the purpose is as a general overview on how each Category profits will look in the forecasted year.  
-								</p>
+								<p>The forecasted profits depicted in Figure 6 were calculated by applying the average profit per unit sold for 
+									each category to the predicted volume of units sold. This approach, while based on assumptions such as 
+									consistent product mix and stable profit margins, aims to provide a generalized forecast of category-specific profitability for the upcoming year.</p>
 								<h3>Conclusion</h3>
-								<p>
-									After creating a forecast it was found that the sales are seasonal and this information can better help the business 
-									by using the forecast to properly optimize their inventory process as well as properly allocate 
-									investments into marketing or other areas to drive sales to product categories that are not as popular.
-									 Continuing the data indicates an increase in sales for all three categories is forecasted and is a 
-									 good sign that the business is growing and taking the findings of the forecast and exploratory data 
-									 analysis can increase the growth rate even more.
-								</p>
+								<p>The forecasting exercise confirmed the seasonal nature of sales, offering valuable insights for inventory 
+									optimization and strategic marketing investment. Notably, the forecast predicts increased sales across all 
+									categories, signaling healthy business growth. Leveraging these predictions and the insights garnered from the 
+									exploratory data analysis can further enhance the growth trajectory, positioning the business to capitalize on 
+									emerging opportunities and address underperforming areas effectively.</p>
 						</div>
 					</section>
 				

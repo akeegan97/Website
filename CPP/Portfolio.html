@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Portfolio Application</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="title">Portfolio Application</a>
+				<nav>
+					<ul>
+						<li><a href="../index.html">Back to Main</a></li>
+						<li><a href="../CPP.html">Back to Projects</Main></a></li>
+						
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main Section -->
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <h1 class="major">Portfolio Application</h1>
+            <p>This project solved a real-world problem by creating a custom desktop application for fund managers to efficiently manage and track investments. 
+				Built using C++ and leveraging the wxWidgets and wxFreeChart libraries, the application offers a user-friendly interface for data analysis and visualization. 
+				It supports various platforms, including Windows and MacOS, ensuring broad accessibility.</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="wrapper">
+        <div class="inner">
+            <h2 class="major">Key Features</h2>
+            <p>The Portfolio Application integrates several powerful features designed to streamline fund management:</p>
+            <ul>
+                <li>Comprehensive investment tracking and management capabilities.</li>
+                <li>Automatic calculation of management fees, performance fees, and Internal Rate of Return (IRR).</li>
+                <li>Advanced data visualization for fund performance analysis using wxFreeChart.</li>
+                <li>Robust data persistence with JSON for efficient data storage and retrieval.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Technical Details Section -->
+    <section id="technical" class="wrapper">
+        <div class="inner">
+            <h2 class="major">Technical Highlights</h2>
+            <p>The application showcases the following technical achievements:</p>
+            <ul>
+                <li>Seamless integration with the wxWidgets library for a cross-platform GUI.</li>
+                <li>Efficient data handling and visualization with wxFreeChart.</li>
+                <li>Use of modern C++ features for optimal performance and reliability.</li>
+                <li>Custom algorithm implementations for financial calculations.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Usage and Insights Section -->
+
+	<!-- Design Decisions Section -->
+	<section id="design" class="wrapper">
+		<div class="inner">
+			<h2 class="major">Design Decisions and Code Highlights</h2>
+			<h3>Smart Pointer Usage</h3>
+			<p>One of the key design decisions was the use of <code>shared_ptrs&lt;T&gt;</code> to manage the relationship between Investors, Positions, and Assets. 
+				This choice ensured automatic memory management, preventing memory leaks and dangling pointers, especially important in the context of a complex application 
+				managing numerous financial entities. Below is an example demonstrating this approach:</p>
+			<pre><code class="language-cpp">
+	// Example of using shared_ptrs for resource management
+	std::shared_ptr&lt;Asset&gt; asset = std::make_shared&lt;Asset&gt;("AssetName");
+	std::shared_ptr&lt;Investor&gt; investor = std::make_shared&lt;Investor&gt;();
+	std::shared_ptr&lt;Position&gt; position = std::make_shared&lt;Position&gt;();
+	position-&gt;SetInvestorPtr(investor);
+	position-&gt;SetAssetPtr(asset);
+	investor-&gt;AddPosition(position);
+	asset-&gt;AddPosition(position);
+	</code></pre>
+	<p>This approach simplifies memory management, allowing the application to automatically handle the lifecycle of assets without manual intervention. As well as safely using the 
+		features of pointers without the pitfalls that come with using raw pointers.</p>
+	<h3>Custom Templates</h3>
+	<p>Another key to expanding wxWidgets' capabilities was to derive a custom class for a virtual list ctrl instead of using the default wxListCtrl</p>
+	<pre><code>
+	class CustomControlBase{
+	public:
+		virtual bool IsVListCtrl()const{return false;}
+		virtual ~CustomControlBase(){}
+	};
+	
+	template&lt;typename T&gt;
+	struct DerefHelper {
+		static const T&amp; deref(const T&amp; item) {
+			return item;
+		}
+	};
+	
+	template&lt;typename T&gt;
+	struct DerefHelper&lt;std::shared_ptr&lt;T&gt;&gt; {
+		static const T&amp; deref(const std::shared_ptr&lt;T&gt;&amp; item) {
+			return *item;
+		}
+	};
+	
+	template&lt;typename T&gt;
+	struct DerefHelper&lt;std::unique_ptr&lt;T&gt;&gt; {
+		static const T&amp; deref(const std::unique_ptr&lt;T&gt;&amp; item) {
+			return *item;
+		}
+	};
+	
+	template&lt;typename T&gt;
+	struct DerefHelper&lt;T*&gt; {
+		static const T&amp; deref(T* const&amp; item) {
+			return *item;
+		}
+	};
+template &lt;typename T&gt;
+	class VListControl : public wxListCtrl, public CustomControlBase {
+	private:
+		using UnderlyingType = std::remove_reference_t&lt;decltype(DerefHelper&lt;T&gt::deref(std::declval&lt;T&gt()))&gt;
+	public:
+		VListControl(wxWindow *parent, const wxWindowID id, const wxPoint &pos, const wxSize &size)
+		: wxListCtrl(parent, id, pos, size, wxLC_REPORT | wxLC_VIRTUAL){}};
+	</code></pre>
+	<p>Extending wxWidgets wxListCtrl to be a custom templated class allows the use of "items" that are of shared_ptr type,
+		meaning when interacting with a specific item changing that item's properties flows to all of the other objects that reference 
+		that item. For example in AssetPopout if you interact with a specific valuation or distribution and change the date or amount that will 
+		automatically flow to the asset without explicitly removing the old object, creating a new one, and pushing that new one to the appropriate place.
+	</p>
+		</div>
+	</section>
+
+
+    <!-- Conclusion Section -->
+    <section id="conclusion" class="wrapper">
+        <div class="inner">
+            <h2 class="major">Conclusion</h2>
+			<p>
+				The Portfolio Application has successfully transitioned to production, demonstrating its efficacy in 
+				ensuring data consistency and the accuracy of financial calculations, thereby obviating the need for 
+				multiple Excel workbooks that were prone to oversight and errors in client statements. By centralizing 
+				critical fund information, the application streamlines data verification processes and enhances the speed 
+				and efficiency of retrieving specific details about assets, investors, and positions as required.
+			</p>
+			<p>
+				From the development and deployment of the Portfolio Application, several valuable lessons emerged, encapsulating a broad spectrum of software engineering principles and practices. 
+				These insights not only enhanced the project's efficiency and reliability but also provided a solid foundation for future development endeavors. Here's a summary touching upon the specified topics:<br>
+				<br>
+				1.	CMake for Building: CMake proved instrumental in streamlining the build process across different platforms. It facilitated the creation of a versatile build environment 
+				that could adapt to varying operating system requirements, demonstrating the importance of a powerful, cross-platform build system in modern software development.<br>
+				<br>
+				2.	Apple App Bundle and Windows Development: Packaging the application for macOS as an App Bundle and adapting it for Windows highlighted the nuances of platform-specific 
+				distribution. This experience underscored the necessity of understanding the ecosystem and deployment standards of each target platform to ensure seamless installation and user experience.<br>
+				<br>
+				3.	Static and Dynamically Linked Libraries: The project's exploration of both static and dynamically linked libraries shed light on the distinct trade-offs associated with 
+				each linking method, ultimately influencing a pivotal decision in the development process. Initially, the project embarked on a path toward dynamic linking, attracted by the 
+				benefits of reduced application size and the facilitation of smoother updates. However, as development progressed, the advantages of static linking—particularly its contribution to easier 
+				deployment and consistency across different environments—became increasingly apparent. This realization led to a strategic pivot towards static linking as the preferred method. 
+				The choice to opt for static linking was driven by the paramount importance of simplifying distribution, ensuring that end-users could access and use the application with minimal setup requirements. 
+				This decision underscored the necessity of adaptability in software development, as well as the importance of selecting technologies and methodologies that best align with the project's overarching goals, 
+				especially in terms of deployment and user experience.<br>
+				<br>
+				4.	Modern C++ Standards: Employing modern C++ features such as shared_ptrs, std::remove_reference_t, and various STL methods (sort, emplace, pop_back, swap, iterators) not 
+				only facilitated safer memory management and more efficient data manipulation but also made the code more readable and maintainable. These practices emphasized the benefits of 
+				staying current with evolving language standards to leverage new capabilities and idioms.<br>
+				<br>
+				5.	Proper Class Setups: The project reinforced the importance of encapsulation in object-oriented design, utilizing private member variables with public setters and getters. 
+				This approach ensured data integrity and abstraction, allowing for more controlled access and manipulation of class data. The experience validated the principles of encapsulation 
+				and the significance of designing classes with clear interfaces and restricted access to their internal state.<br>
+				<br>
+				Overall, the Portfolio Application project served as a comprehensive exercise in applying and integrating various software development practices and C++ programming techniques. 
+				The lessons learned from navigating cross-platform development challenges, leveraging modern C++ features, and adhering to sound design principles have not only improved the 
+				application's quality but also enriched my expertise. <br>
+				<br>
+				
+			</p>
+			<p>
+				The project is in ongoing development, evolving in response to user feedback. This adaptability underscores a significant benefit of custom applications: the ease of 
+				incorporating new or requested features into subsequent updates, ensuring the application continuously meets and exceeds user needs.
+			</p>
+        </div>
+    </section>
+
+</div>
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+					<a href="https://github.com/akeegan97/Portfolio_Application"target = "_blank">Link to Github Repository</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>

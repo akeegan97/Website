@@ -29,12 +29,17 @@
 						<section id = "main" class="wrapper">
 							<div class = "inner">
 							<p>
-                                This project was designed to be an investment simulator, that a potential client could use to model the different offerings provided 
-                                and choose which works the best for them. The user would select the offering type,&nbspshort-term rental,
-                                &nbsplong-term rental,&nbspor private equity fund.&nbspOnce selected the user would be able to pick inside those main categories the 
-                                investment opportunity that they are drawn to.&nbspAfter that selection they are directed to a simulation page where they can change the different 
-                                parameters that could affect their investment and see how the various changes impact performance.&nbspAfter that they are given an option to download 
-                                the results as a csv file which they can use to conduct their own analysis or come to a meeting prepared to discuss.&nbspI used EGUI for the GUI for this application.
+                                This project introduces an innovative investment simulator tailored for potential clients seeking to explore and model 
+                                various investment options. Designed with user experience in mind, the simulator allows clients to navigate through distinct investment categories, 
+                                including short-term rentals, long-term rentals, and private equity funds.<br>
+                                <br>
+                                Upon selecting a preferred investment category, users are presented with a range of specific opportunities within that domain. 
+                                They can then proceed to a dynamic simulation interface, where adjusting different investment parameters reveals immediate effects on projected outcomes. 
+                                This feature empowers users to fine-tune their investment strategies based on real-time feedback, enhancing decision-making accuracy.<br>
+                                <br>
+                                A pivotal aspect of this tool is its capability to generate downloadable CSV files summarizing the simulation results. 
+                                This functionality enables clients to perform detailed analyses offline or facilitate in-depth discussions during advisory meetings. The application's 
+                                graphical user interface is powered by EGUI, ensuring a seamless and intuitive user experience throughout the investment modeling process.
                             </p>
 							<p>
                             </p>
@@ -53,7 +58,7 @@
                             </h3>
                             <span class="image fit"><img src = "../images/IVST_MAIN.jpg"/></span>
                             <p>
-                                Figure 1: Once the application is opened the user is greated with a choice between the three investment sectors offered.&nbspthe user clicks which one 
+                                Figure 1: Once the application is opened the user is greeted with a choice between the three investment sectors offered.&nbspthe user clicks which one 
                                 resonates with them
                                 the most and then is brought to a second page where they can select the offering.&nbsp
                             </p>
@@ -64,14 +69,6 @@
 							<p>
                                 Figure 2 shows the rendered UI once the user has selected the investment opportunity that they want as well as any selected service packages 
                                 and property mangament.
-                            </p>
-                            <h3>Figure 3: Simulation Page</h3>
-                            <span class="image fit"><img src = "../images/IVST_FL_SIM.jpg"/></span>
-                            <p>
-                                Figure 3 shows the rendered UI once the user selects Simulation.&nbspThe UI offers a parameter selection area on the left side of the page where the parameters to
-                                the function can be changed in real time and updated on the graph as well as below the graph where the last results are displayed.&nbspCenter in the pane is the simulation
-                                graph as it tracks the mortgage,&nbsprental income,&nbspcapital requirements,&nbspand property value through the specified time span.&nbspBelow that are the ending results of
-                                the simulation along with the download to csv button.&nbspIf clicked the user will have a csv file of the simulation downloaded to their desktop directory.
                             </p>
                             <h3>Main Function Code</h3>
                             <pre><code>
@@ -439,42 +436,27 @@ pub fn show(ctx:&egui::Context, selected_product: &mut Option<Sectors>){
         });
     });
 }
-                                
-pub const IBFL :&str= "
-InBest For Life: 
-Focused around shot-term rentals
-pre-construction and market 
-units available to purchase.
-Add property management to have 
-a zero headache passive income
-solution to your portfolio";
-                                
-pub const IBFP: &str= "
-InBest For Profit:
-Focused around long-term rentals
-and investment properties. Typically
-a longer investment horizon than
-InBest for Life, also available
-to add property management for
-rental units if needed.";
-                                
-pub const FUND :&str= "
-InBest Fund:
-alternative investment offerrings
-from promissary notes to funding
-building developements. InBest Fund
-has an investment solution for 
-everyone.";
+
                             </code></pre>
-                            <h3>Thoughts</h3>
-                            <p>
-                                The application gives a finer control over the parameters useful for 
-                                modeling much better and clearer than a xlsx workbook would and is easier to navigate and read for
-                                the potential investor.&nbspWhile it's not fully complete with specified values the framework is 
-                                ready to be used in production and creating it in Rust was a very insightful and enjoyable experience. 
-                            </p>
 						</div>	
 					</section>
+                    <section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Conclusion</h1>
+							<section id = "main" class="wrapper">
+								<div class = "inner">
+                                    <p> 
+                                        The application significantly enhances the investment modeling process by offering superior 
+                                        control over crucial parameters. It surpasses the conventional Excel workbook in clarity and ease of use, 
+                                        providing potential investors with a more accessible and intuitive interface. Although the simulator is not yet 
+                                        populated with definitive values for every scenario, its core framework is robust and production-ready. Developing 
+                                        this tool in Rust presented a rewarding challenge, yielding valuable insights and a gratifying experience overall. 
+                                    </p>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+        
 		<!-- Footer -->
 			<footer id="footer" class="wrapper alt">
 				<div class="inner">

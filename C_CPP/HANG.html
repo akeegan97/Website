@@ -33,23 +33,22 @@
 					<section id="main" class="wrapper">
 						<div class="inner">
 							<h1 class="major">Hangman</h1>
-							
-							<p>This mini project was my first project in the C progamming language. The exe file takes a random word from the associated text file and uses that word as the secret word
-								players have to guess. In the terminal where the code runs starts by asking for a player's name so it can use that in subsequent printf statements to the terminal. After a player
-								successfully guesses the word the program asks them if they would like to play again or end the program. Ending the program is met with a message to the player telling tham thank 
-								you for playing "player" else the program loops to the beginning and chooses a new random word.
-							</p>
+							<p>This mini-project marks my foray into programming with C. The game begins by selecting a random word from an 
+								accompanying text file to serve as the secret word for the player to guess. When launched, the terminal-based game prompts 
+								for the player's name, personalizing the game experience through customized messages. Upon successful word guess, players 
+								are given the choice to either play another round with a new random word or exit. A graceful exit message thanks the player 
+								by name, enhancing the game's interactive feel.</p>
 							
 						</div>
 					</section>
 					<section id="main" class="wrapper">
 						<div class = "inner">
 							<h1 class="major">Code</h1>
-							<p>This portion of the code handles the initial set up of the program. initializing the max lines and max length of the char array to store the entirety of the
-								words.txt file. Next it prints out to the terminal the welcome message, and asks for the player's name. Opening the words.txt file and looping through the file 
-								and putting each new line into the words char array. Finally initializing the random number to use as the index value of the char array and storing that value
-								as the secret word SW.
-							</thead></thead></p>
+							<p>The code initiates with setting up the program's fundamental parameters, including the maximum number of lines 
+								and the maximum length of each word to efficiently manage the content of the "words.txt" file. It commences with a warm 
+								welcome message and requests the player's name. Following this, the program opens the "words.txt" file, iterating through each 
+								line to populate a character array with potential secret words. A random selection mechanism then chooses a word from this array to act as 
+								the game's secret word (SW), setting the stage for an engaging round of Hangman.</p>
 							<pre><code>
 #include< stdlib.h >
 #include< stdio.h >
@@ -105,17 +104,9 @@ int main() {
 	//implement while loop for the remaining game logic
 									
 							</code></pre>
-							<p>This portion of the code handles the logic of the program. Walking through the program first the variable for the win condition is set to 0 or False. Next the while loop 
-								for the internal logic is placed. This checks the win condition making sure it is still false once it checks that, the next portion is entered which checks the answerCheck
-								array which is initalized to the length of the secret word and made up of all 0's, if it encounters a 0 at the index value it prints a * which represents a still unguessed 
-								letter. if a 1 is found it checks the secret word array and returns the letter at the same index location as the true value in the answerCheck array. For a quick example:
-								the answerCheck array = [0,0,1,0], and the secret word array has [t,h,a,t], in this loop the same index value as the 1 in answerCheck is displayed to the player, which would
-								be a, so the printf line would read: The word is: **a*, each iteration the answerCheck array is checked and the corresponding letter is displayed. The next part of the logic 
-								asks the player for a letter stors it in the Guess variable and this Guess char is compared to the secret word, if the char matches the secret word at any position the answerCheck
-								variable at that index postion is turned to a 1. Once all characters are guessed the final loop occurs displaying the word, telling the player they won and asking if they want
-								to play again. If the player enters anything except a 0 the game is restarted with a new random word and the guess counter is reset to 0. If 1 is input the game ends and sends the final 
-								message "Thanks for playing : "player"".
-							</p>
+							<p>This section of the code governs the core logic of the Hangman game. Initially, the win condition variable is set to False (0), indicating the game is in progress. The primary while loop then activates, continuously checking this win condition. Within this loop, the program examines the `answerCheck` array, which starts as an array of 0's, each representing an unguessed letter in the secret word. If a 0 is encountered, a placeholder (*) is displayed; if a 1 is found, the corresponding letter from the secret word is revealed. For instance, if `answerCheck` is [0,0,1,0] and the secret word is "that," the output to the player would be: **a*.</p>
+							<p>Following this, the game prompts the player to guess a letter, storing the input in the `Guess` variable. This guess is then compared against each letter in the secret word. If a match is found, the respective index in `answerCheck` is updated to 1, revealing the letter in subsequent rounds. When all letters are correctly guessed, signaling that `answerCheck` contains no more 0's, the game displays the complete word, congratulates the player, and inquires if they wish to play another round.</p>
+							<p>Should the player choose to continue (by not entering 0), the game restarts with a new secret word and the guess counter reset. Entering 0 concludes the game, triggering a farewell message that appreciatively includes the player's name, "Thanks for playing, [player]."</p>
 							<pre><code>
     while(won == 0){
 	    printf("The word is: ");//printing the first part of the stdout message:
@@ -176,7 +167,27 @@ int main() {
 					</section>
 
 			</div>
+			<section id="main" class="wrapper">
+				<div class = "inner">
+					<h1 class="major">Conclusion</h1>
+					<p>
+						As this chapter of my programming journey closes, reflecting on the creation of this Hangman game as my inaugural 
+						C project fills me with a sense of accomplishment and invaluable learning. Diving into the C language, known for its power and complexity, 
+						presented a unique set of challenges and opportunities for growth. Through the development process—from conceptualizing the game's flow to 
+						implementing its logic and witnessing the dynamic interaction in the terminal—I've gained a deeper understanding of fundamental programming 
+						concepts, memory management, and the importance of efficient code structure.
 
+						This project was more than just writing code; it was about solving problems, thinking critically about functionality and 
+						user experience, and learning to navigate the intricacies of a new programming language. The success of this game, marked not only by its 
+						functionality but also by the personal growth experienced throughout its development, sets a strong foundation for my future endeavors in software development.
+						
+						As I move forward, the lessons learned and the confidence gained from this project will undoubtedly influence my approach 
+						to future challenges. I look forward to exploring more complex projects and continuing to expand my skills in C and other programming languages. 
+						This Hangman game will always serve as a reminder of where I started and how far I can go with determination and a willingness to learn.
+					</p>
+				</div>
+			</section>
+			
 		<!-- Footer -->
 		<footer id="footer" class="wrapper alt">
 			<div class="inner">

@@ -35,15 +35,13 @@
 								GBM has applications in finance since by design the output of the function is bounded as [0, +∞), such that there are no negative values given. The equation of 
 								Geometric Brownian Motion is given by dS(t)= μS(t)dt+ σS(t)dW(t), solving the stochastic differential equation yields S(t)=S(0)  exp⁡((μ-1/2 σ^2 )t+σε. This is the equation that I used 
 								in order to simulate price paths of several different stocks. </p>
-							<p>In the solved form, S(t)=S(0)  exp⁡((μ-1/2 σ^2 )t+σε, μ is the drift and σ is the diffusion, these parameters measure the trend and the potential spread respectively. 
+							<p>In the solved form, S(t)=S(0)  exp⁡(μ-1/2 σ^2 )t+σε, μ is the drift and σ is the diffusion, these parameters measure the trend and the potential spread respectively. 
 								Estimating the two parameters can be done in any number of ways, the option I used was taking the natural log of returns to find the expected value (μ) and the variance (σ) of 
 								observed returns. The error term ε is estimated by taking a random selection from a normal distribution with a mean of 0 and a standard deviation of √Δt, 
 								where Δt  is one divided by the step size. The underlying assumption with this approach to estimating μ and σ is that the stock’s distribution of log returns is constant through time, 
 								with only the numerical price changing.  </p>
 						</div>
-							
-							
-			</div>
+					</div>
 				</section>
 					<section id="main" class="wrapper">
 						<div class="inner">
