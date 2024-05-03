@@ -25,190 +25,476 @@
 			<div id="wrapper">
 				<section id="main" class="wrapper">
 					<div class="inner">
-						<h1 class="major">What is Geometric Brownian Motion?</h1>
+						<h1 class="major">Building a High-Performance Equity Price Simulator with Python, Tkinter, and C++</h1>
 						<section id = "main" class="wrapper">
 							<div class = "inner">
-						
-							<span class="image fit"><img src="../images/Geometric Brownian Motion equation.jpg" alt="" /></span>
-							<p>This project revolved around the use of Geometric Brownian Motion to forecast stock prices. Brownian Motion is a continuous stochastic differential equation 
-								that has useful properties in modeling random processes. In this application a specific subset of Brownian Motion was used: Geometric Brownian Motion. 
-								GBM has applications in finance since by design the output of the function is bounded as [0, +∞), such that there are no negative values given. The equation of 
-								Geometric Brownian Motion is given by dS(t)= μS(t)dt+ σS(t)dW(t), solving the stochastic differential equation yields S(t)=S(0)  exp⁡((μ-1/2 σ^2 )t+σε. This is the equation that I used 
-								in order to simulate price paths of several different stocks. </p>
-							<p>In the solved form, S(t)=S(0)  exp⁡(μ-1/2 σ^2 )t+σε, μ is the drift and σ is the diffusion, these parameters measure the trend and the potential spread respectively. 
-								Estimating the two parameters can be done in any number of ways, the option I used was taking the natural log of returns to find the expected value (μ) and the variance (σ) of 
-								observed returns. The error term ε is estimated by taking a random selection from a normal distribution with a mean of 0 and a standard deviation of √Δt, 
-								where Δt  is one divided by the step size. The underlying assumption with this approach to estimating μ and σ is that the stock’s distribution of log returns is constant through time, 
-								with only the numerical price changing.  </p>
-						</div>
+								<h2>Project Overview</h2>
+								<p>
+									This project was designed to integrate Python and C++, leveraging the strengths of each language: Python for rapid development and ease of use, 
+									and C++ for high-performance computing. To achieve this, I utilized Python's tkinter library for GUI development, and
+									NumPy and pandas for data ingestion and normalization. Additionally, Pybind11 was employed to create bindings to a custom-written C++ library that handles the intensive computational work.
+								</p>
+								<span class="image"><img src ="../images/GBMPYTHON1.jpg"/></span>
+								<h2>Understanding Geometric Brownian Motion (GBM)</h2>
+								<p> 
+									At the core of this project is the Geometric Brownian Motion model, a stochastic process widely used in financial modeling to predict the future prices of securities. GBM assumes
+									that the logarithim of the price of a financial asset follows a Brownian motion with drift and volatility. This makes it particularly useful for modeling stock prices, which are 
+									often subject to random fluctuations but exhibit a general direction (up or down) over time.
+								</p>
+								<p> </p>
+							</div>
 					</div>
 				</section>
 					<section id="main" class="wrapper">
 						<div class="inner">
-							<h1 class="major">Forecasting with GBM</h1>
+							<h1 class="major">Graphical User Interface</h1>
 							<section id = "main" class="wrapper">
 								<div class = "inner">
-								<p>In Python I created a function that could take parameters and would return a graph with the simulated Geometric Brownian Motion price paths for a stock, a histogram of the 
-								final predicted price of the simulated paths, the mean predicted price, the starting price, and the actual price on the forecasted date. Figure 3 shows 
-								the function that I defined. The parameters are scaled to the time frame that the forecast is predicting for. This is done by multiplying μ with the number of steps and σ by the square root of 
-								the number of steps, steps are defined as the number of trading days that the price was specified to be predicted for. Doing this scales the parameters in a manner that is usable in predictions 
-								that are further than one trading day as the μ and σ that are originally estimated are in daily units.</p>
-								<p>I primarily used BAC stock data to test and analyze the model’s accuracy and to see what the number of days that produced the best results, however I also used OMCL (Omnicell) and BTC (Bitcoin) for personal curiosity. 
-								Figure 1 shows the resulting graph for a time step of 21 and all of the simulated paths as well as the true price path that was observed in black. Figure 2 shows the histogram of predicted values at 
-								t = steps as well as the actual value on that date.  </p>
-								<p>
-								I conducted an analysis on the accuracy of the model I had built with the results being shown in the table below. I started by randomly selecting five starting and ending dates between 2012 and 2021
-								I focused the analysis on 21, 43, 64, 128, and 252 trading days which equates to 1, 2, 3, 6, and 12 months respectively. The findings of the analysis shows that the most accurate prediction length
-								is 64 trading days with only a 3% average error over 5 samples. This is, at first glance, surprising as I would have expected to see an exponential increase in error as the forecasting steps are increased.
-								However, as the steps are increased the short term volatility that stock prices experience are smoothed out and the longer running trend captured by σ becomes dominate. A larger sample size and more financial 
-								securities would be needed to give a definitive answer but it is an informative cursory analysis.  
-								</p>
-									<div class="table-wrapper">
-									<table>
-										<thead>
-											<tr>
-												
-												<th>Step Size</th>
-												<th>Percent Error</th>
-												
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>21</td>
-												<td>8%</td>
-												
-											</tr>
-											<tr>
-												<td>43</td>
-												<td>9%</td>
-												
-											</tr>
-											<tr>
-												<td>64</td>
-												<td> 3%</td>
-												
-											</tr>
-											<tr>
-												<td>128</td>
-												<td>14%</td>
-												
-											</tr>
-											<tr>
-												<td>252</td>
-												<td>31%</td>
-												
-											</tr>
-										</tbody>
-										
-									</table>
-								</div>
-							
+									<h2>GUI Development with Tkinter</h2>
+									<p>
+										The first step in developing the application was to create an intuitive user interface that allows users to interact with the software without needing to understand 
+										the underlying complexity. For this, I chose Python's tkinter library because of it's effectiveness in creating desktop applications. The GUI serves as the front end where
+										users can: 
+										<ul>
+											Load Data: Users can upload CSV files directly through the interface, the file is expected to contain daily prices of an equity with corresponding dates.
+										</ul>
+										<ul>
+											Set Parameters: After loading the data, users can select the desired time frame for analysis and specify the number of trading days they wish to predict using GBM.
+										</ul>
+									</p>
+									<h2>Data Handling with Pandas</h2>
+									<p>
+										Upon successful upload, the CSV file is converted into a pandas DataFrame. This conversion is crucial as it leverages pandas' powerful data manipulation capabilities to preprocess the data. 
+										This includes creating slices of the overall data to focus on the specified timeframe from the user as well as normalizing and preprocessing before use in the simulation. Using pandas ensures that
+										the data handling is efficient and error-resistant, which is important for the accuracy of the GBM simulations.
+									</p>
+									<h2>Graphical Display</h2>
+									<p>
+										The GUI also incorporates a graphical display feature, which plots the data directly from the uploaded CSV file. This visual is important as it allows users to get a feel of their data as well as 
+										drill down to a specific timeframe that they want to utilize for the simulation. After the simulation has ran the user is also shown a small subset of the random paths specified as well as the actual
+										price path during the same period. 
+									</p>
 							</div>	
 						</section>
+					</section>
 					<section id="main" class="wrapper">
-						
-							<h1 class="major">Figures</h1>
-							<div class="inner">
-							<h3>
-								Figure 1: Price Paths Simulated with GBM
-							</h3>
-							<span class = "image fit"><img src= "../images/GBM_price_paths_64 days.jpg", alt="" /></span>
-							<h3>
-								Figure 2: Histogram of Final Price Predicted by Each Path
-							</h3>
-							<span class = "image fit"><img src = "../images/Histogram of predicted final prices_64 trading days.jpg"/></span>
-							<h3>
-								Figure 3: Full Function Code
-							</h3>
-							<pre><code>
-def gbm(start, end, steps, path, data):
-	start = pd.to_datetime(start)
-	end = pd.to_datetime(end)
-	steps = steps
-	paths = path
-	df = pd.DataFrame(data)
-	df['Date'] = pd.to_datetime(df['Date'])
-	df['Index'] = df.index
-	df = df.set_index(['Date'])
-	a = df['Index'].loc[start]+1
-	b = df['Index'].loc[end]
-	c = b + steps +1
-							
-	t_s = df.iloc[a:b].copy()
-	p_s = df.iloc[b:c].copy()
-							
-	t_s['Log_Returns'] = np.log(t_s.Price) - np.log(t_s.Price.shift(1))
-							
-	x = len(t_s['Log_Returns'])
-	Mu_hat_D = t_s['Log_Returns'].sum() / x
-	sigma_2_hat_D = t_s['Log_Returns'].std()
-							
-	Year = 1
-	delta_T = Year/steps
-							
-							
-	Mu_hat = Mu_hat_D * steps
-	sigma_2_hat = sigma_2_hat_D * np.sqrt(steps)
-	sigma_hat = np.sqrt(sigma_2_hat)
-							
-	S_0 = p_s['Price'].iat[0]
-							
-	S_t = np.exp(
-		(Mu_hat - (sigma_2_hat / 2))
-		* delta_T + sigma_hat *
-		np.random.normal(0,np.sqrt(delta_T), size=(paths,steps)).T
-		)
-	S_t = np.vstack(
-		[np.ones(paths),S_t]
-		)
-	S_t = np.round(S_0 * S_t.cumprod(axis=0),2)
-							
-	time_x_axis = np.array(
-		p_s.index
-		)
-								
-	final_forecast = S_t.T
-	S_T = [i[-1] for i in final_forecast]
-	forecasted_mean_price = sum(S_T)/len(S_T)
-	S_T = np.array(S_T)
-							
-	Real_Price = p_s['Price'].iat[-1]
-							
-	plt.figure(figsize=(14,7))
-	plt.plot(time_x_axis,S_t)
-	plt.plot(time_x_axis,p_s['Price'],zorder = paths +1, color='black')
-	plt.xlabel('Date')
-	plt.ylabel('Price')
-	plt.title(
-		'Geometric Brownian Motion with Mu = {} Sigma = {} \n Paths = {} for 
-		Trading Days = {} \n Historical Start = {} 
-		End = {} '.format(round(Mu_hat_D,4),
-		round(sigma_hat,4),paths,steps,start,end)
-	)
-								
-							
-	plt.figure(figsize=(14,7))
-								
-	plt.hist((S_T),bins=50)
-								
-	plt.axvline(Real_Price, color = 'Black')
-	plt.axvline(forecasted_mean_price, color ='red')
-							
-	plt.title(
-		'Histogram of Predicted Prices of {} Paths for {} Trading Days Paths \n
-		Real Price = Black Mean Predicted Price = Red \n Historical Start = {} 
-		End = {}'.format(paths,steps,start,end)
-	)
-	plt.xlabel('Price')
-	plt.ylabel('Count of Price')
-	plt.show()
-							
-	return forecasted_mean_price, Real_Price ,S_0
-							</code></pre>
-				</section>
+						<div class="inner">
+							<h1 class="major">Bridging Python and C++ with Pybind11</h1>
+							<section id = "main" class="wrapper">
+								<div class = "inner">
+									<h2>Pybind11 Integration</h2>
+									<p>
+										Exposing custom-written C++ functions to Python was possible through the use of Pybind11. Pybind11 is a lightweight header-only library that exposes C++
+										types to Python and vice versa. This was very important as leveraging the computational power of C++ directly from Python is a game changer in developement, allowing
+										the best of both worlds to shine through. 
+									</p>
+									<P>
+										Example Pybind11 module:
+										<pre><code>
+int add(int i, int j){
+	return i+j;
+}	
+PYBIND11_MODULE(simulation, m) {
+    m.doc() = "Simulation module for performing GBM simulations and calculating statistics"; 
+    m.def("add", &add, "A function which adds two numbers");
+}
+										</code></pre>
+									</P>
+										<p>
+											This is a simple example which allows Python to call simulation.add(x,y). However, the real power comes in when exposing more complex functionality such as GBM simulation functions.
+										</p>
+									<h2>Perfomance-Optimized C++ Code</h2>
+									<p>The computational backbone of the project is written in C++, utilizing features such as multithreading and SIMD(Single Instruction Multiple Data) instructions to drastically reduce 
+										computational times.
+									</p>
+									<h3>Utilizing SIMD</h3>
+									<p>
+										<pre><code>
+#include &lt;immintrin.h&gt;							
+__m256d exp_approx(__m256d x) {
+	//SIMD custom function for computing exponential function fitted to range (-0.2,0.2)
+	//error compared to STD::EXP() over same range ~ (7.5E-09:3.1E-10)
+	//coefficients found using numpy and scipy.optimize for the range 
+	__m256d c0 = _mm256_set1_pd(1);
+	__m256d c1 = _mm256_set1_pd(1);
+	__m256d c2 = _mm256_set1_pd(0.49999898);
+	__m256d c3 = _mm256_set1_pd(0.16666646);
+	__m256d c4 = _mm256_set1_pd(0.04174285);
+	__m256d c5 = _mm256_set1_pd(0.00834562);
+
+	__m256d x2 = _mm256_mul_pd(x, x);
+	__m256d x3 = _mm256_mul_pd(x2, x);
+	__m256d x4 = _mm256_mul_pd(x2, x2);
+	__m256d x5 = _mm256_mul_pd(x3, x2);
+
+	__m256d result = _mm256_add_pd(c0, _mm256_mul_pd(c1, x));
+	result = _mm256_add_pd(result, _mm256_mul_pd(c2, x2));
+	result = _mm256_add_pd(result, _mm256_mul_pd(c3, x3));
+	result = _mm256_add_pd(result, _mm256_mul_pd(c4, x4));
+	result = _mm256_add_pd(result, _mm256_mul_pd(c5, x5));
+
+	return result;
+}
+										</code></pre>
+									</p>
+									<p>
+										SIMD makes use of the ability to manually vectorize a function that a compiler may have diffculty automatically doing itself. Working with a 256 bit wide register we can pack 
+										four 64 bit double values and apply the same operation (SI) to them simultaneously with different data (MD). Theoretically offering a 4x speed increase however that was not seen in this application
+										as we will see later.
+									</p>
+									<h3> SIMD inside of Multithreading</h3>
+									<p>
+										<pre><code>
+double CalculateSIMDPaths(int numPaths, int steps, double startingPrice, 
+double partialComputation, double normalizedStd, double sqrtDeltaT)
+{
+    //caluations per step in path
+    /*
+    steps
+    loop: 
+        x = price
+        a = normStd * sqrtDT
+        b = a * randomval
+        c = partialcomp + b
+        d = exp_approx(c)
+        x = x*d
+    finalPrice = x 
+    */
+    double averageForThisThread = 0;
+    double finalPrices[4];
+    __m256d _normalDistrValues;
+
+    //constants
+    __m256d _normalStdVec = _mm256_set1_pd(normalizedStd);
+    __m256d _partialCompVec = _mm256_set1_pd(partialComputation);
+    __m256d _sqrtDTVec = _mm256_set1_pd(sqrtDeltaT);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::normal_distribution&lt;double> d(0.0,1.0);
+
+    for(int i=0; i&lt;numPaths;i+=4){
+        alignas(32) double prices[4];  
+        for(int k=0; k&lt;4;++k){
+            prices[k]=startingPrice;
+        }
+        __m256d _prices = _mm256_load_pd(prices);
+        
+        for(int j =1;&lt;steps;++j){
+            alignas(32) double ranNums[4];
+            for(int k=0;&lt;4;++k){
+                ranNums[k]= d(gen);
+            }
+            _normalDistrValues = _mm256_loadu_pd(ranNums);
+            //compute 
+            __m256d _a = _mm256_mul_pd(_normalStdVec,_sqrtDTVec);
+            __m256d _c = _mm256_fmadd_pd(_a,_normalDistrValues,_partialCompVec);
+            __m256d _d = exp_approx(_c);
+            _prices = _mm256_mul_pd(_prices,_d);
+        }
+        _mm256_storeu_pd(finalPrices,_prices);
+        double averageForThisPass = 0;
+        for (int k=0;&lt;4;k++){
+            averageForThisPass+=finalPrices[k];
+        }
+        averageForThisThread+= (averageForThisPass);
+    }
+    return averageForThisThread / numPaths;
+}
+										</code></pre>
+									</p>
+									<p>
+										In the above code we start with defining the process in the simplest terms one operation at a time so we can get a sense of what operations will be required.
+										We then define the constants or local variables that will not change during different steps and paths.<br>
+										<pre><code>
+double averageForThisThread = 0;
+double finalPrices[4];
+__m256d _normalDistrValues;
+__m256d _normalStdVec = _mm256_set1_pd(normalizedStd);
+__m256d _partialCompVec = _mm256_set1_pd(partialComputation);
+__m256d _sqrtDTVec = _mm256_set1_pd(sqrtDeltaT);
+std::random_device rd;
+std::mt19937 gen(rd());
+std::normal_distribution&lt;double> d(0.0,1.0);
+										</code></pre>
+										After we have these we move into the outermost loop that represents number of paths we will be working with on a single thread. 
+										A change from a normal for loop is the increment size being 4 instead of 1. This is due to the fact that we are working simultaneously with 
+										four paths at a time utilizing SIMD instructions.
+										<pre><code>
+	for(int i=0; i&lt;numPaths;i+=4){
+		alignas(32) double prices[4];  
+		for(int k=0; k&lt;4;++k){
+			prices[k]=startingPrice;
+		}
+		__m256d _prices = _mm256_load_pd(prices);
+		...}
+										</code></pre>
+										We start here by loading a register with four of our starting prices, now that everything is initialized we can start the calculation per groups of four 
+										paths until we reach the end number of steps.
+										
+										<pre><code>
+	for(int j =1;&lt;steps;++j){
+		alignas(32) double ranNums[4];
+		for(int k=0;&lt;4;++k){
+			ranNums[k]= d(gen);
+		}
+		_normalDistrValues = _mm256_loadu_pd(ranNums);
+		//compute 
+		__m256d _a = _mm256_mul_pd(_normalStdVec,_sqrtDTVec);
+		__m256d _c = _mm256_fmadd_pd(_a,_normalDistrValues,_partialCompVec);
+		__m256d _d = exp_approx(_c);
+		_prices = _mm256_mul_pd(_prices,_d);
+	}											
+										</code></pre>
+										At every step we must create four unique random numbers, after we load a __m256d register with those unique values we can move into the actual operations.
+										First we create a __m256d register _a that will house the result of a multiplication operation of two __m256d registers. Once that is done we move on to a 
+										multiply add instruction that takes args (a,b,c) multiplying (a,b) and adding c to the result.
+										At this step we have calculated everything in the exponent and we need to apply our custom exp_approx function. 
+										After that is done we have the scalar factor to multiply the old price by to predict the next step. 
+		
+									<pre><code>
+	{..	
+		_mm256_storeu_pd(finalPrices,_prices);
+		double averageForThisPass = 0;
+		for (int k=0;&lt;4;k++){
+			averageForThisPass+=finalPrices[k];
+		}
+		averageForThisThread+= (averageForThisPass);
+	}
+	return averageForThisThread / numPaths;
+										</code></pre>
+										Once all the steps for the four paths are finished we store the resultant __m256d register into a double [4] variable, loop through collecting the averageForThisPass variable and increment
+										the averageForThisThread variable before starting on the next four paths on this thread.
+									</p>
+									<p>
+										Creating and running threads working with CalculateSIMDPaths.
+										<pre><code>
+std::pair&lt;std::vector&lt;std::vector&lt;double&gt;&gt;,double&gt; SimulateGBMIntrinsicMT(double startingPrice, 
+	double normalizedMu, double normalizedVar, double normalizedStd,int steps, int totalPaths)
+{
+	double deltaT = 1.0 / steps;
+	double partialComputation = (normalizedMu - 0.5 * normalizedVar) * deltaT;
+	double sqrtDeltaT = std::sqrt(deltaT);
+
+	std::vector&lt;std::vector&lt;double&gt;&gt; displayPaths;
+	int displayPathsCount = std::min(50, totalPaths);
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::normal_distribution&lt;double&gt; d(0.0,1.0);
+	int numThreads = std::thread::hardware_concurrency();
+	std::vector&lt;std::thread&gt; threads;
+	int pathsPerThread = totalPaths / numThreads;
+	int remainingPaths = totalPaths % numThreads;
+
+	std::vector&lt;double&gt; averagePrices(numThreads);
+
+	for (int i = 0; i &lt; numThreads; ++i) {
+		int numPaths = pathsPerThread + (i &lt; remainingPaths ? 1 : 0);
+		threads.emplace_back([&averagePrices, i, numPaths, steps, startingPrice, 
+		partialComputation, normalizedStd, sqrtDeltaT]() 
+		{
+			double averagePrice = CalculateSIMDPaths(numPaths, steps, startingPrice, 
+			partialComputation, normalizedStd, sqrtDeltaT);
+			averagePrices[i] = averagePrice;
+		});
+	}
+
+	for (auto& thread : threads) {
+		thread.join();
+	}
+	double totalAveragePrice = 0.0;
+	for (double price : averagePrices) {
+		totalAveragePrice += price;
+	}
+	totalAveragePrice /= numThreads;
+
+	return {displayPaths, totalAveragePrice};
+
+}
+										</code></pre>
+									</p>
+									<h2>Comparisons in Methodologies</h2>
+									<p>
+
+										For a sample test case of 75 steps and 100,000 paths
+										<li>Python: 125 seconds</li>
+										<li>C++ Direct Port: 1.4 seconds</li>
+										<li>C++ Multithreaded: 0.1 seconds</li>
+										<li>C++ Multithreaded SIMD: 0.08 seconds</li> <br>
+										Surprisingly the SIMD optimized version was only marginally faster than the pure multithreaded version. However as we push the two versions further 
+										we find that with a large enough path size SIMD was substantially faster.<br><br>
+										Sample of 5 steps 1,000,000 paths
+										<li>C++ Multithreaded: 0.67 seconds</li>
+										<li>C++ Multithreaded SIMD: 0.4 seconds</li><br>
+										In the end far frome a 4x increase in speed, compiler flags of -O3 probably helped the normal multithreaded version close the gap on the SIMD version, still a substantial 
+										incease by utilizing SIMD.
+									</p>
+							</div>	
+						</section>
+					</section>
 
 			</div>
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<h1 class="major">Conclusion</h1>
+					<section id = "main" class="wrapper">
+						<div class = "inner">
+							<h2>GUI images</h2>
+							<span class="image"><img src ="../images/GBMPYTHON1.jpg"/></span>
+							<span class="image"><img src ="../images/GBMPYTHON2.jpg"/></span>
+							<h2>Python Code</h2>
+							<p><pre><code>
+class GBMApp:
+	def __init__(self, master):
+		self.master = master
+		self.style = ttk.Style(master)
+		self.style_buttons = ttk.Style(master)
+		master.config(bg="#000000")
+		
+		# Configure the custom style for the StartDateFrame
+		self.style.configure("Custom.TFrame", background="#000000", foreground="#05ff3f")
+		self.style_buttons.configure("Button.TButton", font=("Times New Roman", 12),
+		background="#000000", foreground="#05ff3f")
+
+
+		self.StartDateFrame = ttk.Frame(master)
+		self.EndDateFrame = ttk.Frame(master)
+		self.PredictionFrame = ttk.Frame(master)
+
+		self.m_ButtonLabel = ttk.Label(master, text="Select CSV file:")
+		self.m_FileBrowseButton = ttk.Button(master, text="Browse",command=self.browse_file)
+
+		self.m_StartDateLabel = ttk.Label(self.StartDateFrame,text="Start Date of Training")
+		self.m_StartDateVerifyLabel = ttk.Label(self.StartDateFrame,text="Is Date Valid: ")
+
+		self.m_StartTrainingDate = Calendar(master, selectmode='day', background='#000000',
+		foreground='#05ff3f', font=('Times New Roman', 12))
+		self.m_StartTrainingDate.bind("&lt;&lt;CalendarSelected>>", self.UpdateStartDateValid)
+
+		self.m_EndDateLabel = ttk.Label(self.EndDateFrame, text="End Date of Training")
+		self.m_EndDateVerifyLabel = ttk.Label(self.EndDateFrame,text="Is Date Valid: ")
+
+		self.m_EndTrainingDate = Calendar(master, selectmode='day', background='#000000', 
+		foreground='#05ff3f', font=('Times New Roman', 12))
+		self.m_EndTrainingDate.bind("&lt;&lt;CalendarSelected>>", self.CombinedCallForBinding)
+
+		self.m_PredictionDaysLabel = ttk.Label(self.PredictionFrame,text="Prediction Days")
+		self.m_PredictionStepsValid = ttk.Label(self.PredictionFrame,text="Prediction Days Valid:")
+		
+		self.m_PredictionDaysSpinBox = ttk.Spinbox(master, from_=0,to=0)
+		self.m_PredictionDaysSpinBox.bind("&lt;KeyRelease>", self.UpdateSteps)
+		self.m_PredictionDaysSpinBox.bind("&lt;&lt;Increment>>", self.UpdateSteps)
+		self.m_PredictionDaysSpinBox.bind("&lt;&lt;Decrement>>", self.UpdateSteps)
+		self.m_PredictionDaysSpinBox.bind("&lt;FocusOut>", self.UpdateSteps)
+		self.m_StartCalculationButton = ttk.Button(master, text="Start Prediction",
+		state="disabled", command= self.Calculate)
+
+		self.m_CSVDataLabel = ttk.Label(master,text="Data Name: ")
+		self.m_Data = None
+		self.m_StartDate = ""
+		self.m_EndDate = ""
+		self.m_Steps = ""
+		self.m_Paths = 100_000_000
+		self.SetupLayout()						
+						</code></pre></p>
+						<p><pre><code>
+import pandas as pd
+import numpy as np
+
+def ReadCsvData(filePath):
+    if VerifyCsvFormat(filePath):     
+        data = pd.read_csv(filePath)
+        data = pd.DataFrame({
+            "Date": data["Date"],
+            "Close": data["Close"]
+        })
+        data['Date'] = pd.to_datetime(data['Date'])
+        data.sort_values(by='Date',ascending=True, inplace=True)
+        data.reset_index(drop=True, inplace=True)
+        return data
+    else:
+        return None
+
+def VerifyCsvFormat(filePath):
+    try:
+        data = pd.read_csv(filePath,nrows=10)
+    except Exception as e:
+        return False
+    if 'Date' not in data.columns or 'Close' not in data.columns:
+        return False
+    if data['Date'].dtype != 'object' or data['Close'].dtype != 'float64':
+        return False
+    return True
+
+
+def VerifyStartDate(data, startDate):
+    startDate = pd.to_datetime(startDate)
+    if(startDate in data['Date'].values):
+        return True
+    else:
+        return False
+    
+def VerifyEndDate(data, endDate):
+    endDate = pd.to_datetime(endDate)
+    if(endDate in data['Date'].values):
+        return True
+    else:
+        return False
+    
+def GetEndRange(data, endDate):
+    endDate = pd.to_datetime(endDate)
+    try:
+        index_of_end_date = data.index[data['Date'] == endDate][0]
+        top_of_range = len(data) - index_of_end_date - 1
+        return top_of_range
+    except IndexError:
+        return None
+
+def CheckStartEndDate(startDate, endDate):
+    startDate = pd.to_datetime(startDate)
+    endDate = pd.to_datetime(endDate)
+    if startDate &lt; endDate:
+        return True
+    else:
+        return False
+    
+class Statistics:
+    def __init__(self, mu, deviation, variance, normalizedMu, normalizedVariance, normalizedDeviation):
+        self.trainingMu = mu
+        self.trainingDeviation = deviation
+        self.trainingVariance = variance
+        self.normalizedMu = normalizedMu
+        self.normalizedDeviation = normalizedDeviation
+        self.normalizedVariance = normalizedVariance
+    
+def CalculateStatistics(data, startDate, endDate,steps):
+    startIndex = data.index[data['Date'] == startDate][0]
+    endIndex = data.index[data['Date']==endDate][0]
+    trainingData = data.iloc[startIndex:endIndex]
+    logReturns = np.log(trainingData['Close']) - np.log(trainingData['Close'].shift(1))
+    trainingMu = logReturns.mean()
+    trainingDeviation = logReturns.std()
+    trainingVariance = trainingDeviation**2
+    normalizedMu = trainingMu * int(steps)
+    normalizedVariance = trainingVariance * np.sqrt(int(steps))
+    normalizedDeviation = np.sqrt(trainingDeviation)
+    trainingStats = Statistics(trainingMu, trainingDeviation,trainingVariance, 
+	normalizedMu,normalizedVariance, normalizedDeviation)
+
+    return trainingStats
+						</code></pre></p>
+						<h2>
+							Closing
+						</h2>
+						<p>
+							Through this project, my understanding of both Python and C++ has deepened significantly. Utilizing C++ features such as SIMD and multithreading, 
+							combined with the seamless integration capabilities of Pybind11, has truly opened up a new realm of possibilities for high-performance computing in Python applications. 
+							This exploration has not only improved the performance of our equity price simulator but has also provided a robust framework that can be applied to a wide range of other computational problems. 
+							As we continue to push the boundaries between these two powerful languages, the potential for future Python + C++ projects seems boundless.
+						</p>
+					</div>	
+				</section>
+			</section>
+		
 	 
 			
 
@@ -216,7 +502,7 @@ def gbm(start, end, steps, path, data):
 			<footer id="footer" class="wrapper alt">
 				<div class="inner">
 					<ul class="menu">
-						<a href="https://github.com/akeegan97/Asset-Pricing"target = "_blank">Link to Github Repository</a></li>
+						<a href="https://github.com/akeegan97/Pybind11-GBM"target = "_blank">Link to Github Repository</a></li>
 					</ul>
 				</div>
 			</footer>
@@ -229,6 +515,8 @@ def gbm(start, end, steps, path, data):
 			<script src="../assets/js/breakpoints.min.js"></script>
 			<script src="../assets/js/util.js"></script>
 			<script src="../assets/js/main.js"></script>
+			<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+			<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 	</body>
 </html>
